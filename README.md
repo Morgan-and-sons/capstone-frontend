@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# Bank Buddy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+April 2024 Bank Buddy App is a decoupled React and Rails API project. It is built with a PostgreSQL database featuring user authentication and authorization using Devise and JWT.
 
-## Available Scripts
+## Story
 
-In the project directory, you can run:
+Have you ever been out with friends and you all verbally agree to plans that inevitably fall through? Bank Buddy serves as a platform for collaborating with friends, colleagues, or even simply planning a night for yourself. Bank Buddy allows users to create and manage events effortlessly. With Bank Buddy, users can log in securely, create events with detailed descriptions and schedules, and invite friends to join. The app also enables users to set a monetary goal for each event, helping them work together to save up and afford their desired activities. Whether it's a weekend getaway, a dinner party, or a concert night, Bank Buddy empowers users to turn their plans into reality with ease and financial transparency.
 
-### `yarn start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Event Creation**: Easily create events with detailed descriptions, dates, and locations, ensuring everyone is on the same page from the start.
+- **Invitation Management**: Invite friends, family, or colleagues to join your events, making planning and coordination a breeze.
+- **Monetary Goal Setting**: Set financial goals for each event, allowing participants to work together to save up and achieve their desired activities.
+- **User Authentication and Security**: Bank Buddy prioritizes user security with robust authentication and authorization mechanisms, including Devise and JWT, ensuring that only authorized users can access sensitive features and data.
+- **Event Management**: Logged-in users can add, edit, or delete events, giving them full control over their plans and allowing for seamless adjustments as needed.
+- **Financial Transparency**: With Bank Buddy, users can track their progress towards their monetary goals for each event, fostering transparency and accountability among participants.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Sources
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Images: [Unsplash](https://unsplash.com)
+- Logo: [Canva](https://www.canva.com)
