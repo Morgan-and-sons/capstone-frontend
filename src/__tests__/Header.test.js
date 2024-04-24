@@ -12,17 +12,17 @@ test("renders Header component logo and appropriate links", () => {
   const logo = screen.getByAltText(/bank buddy logo/i)
   expect(logo).toBeInTheDocument()
 
-  const DashboardLink = screen.getByText(/Dashboard/i)
-  expect(DashboardLink).toBeInTheDocument()
-  expect(DashboardLink.getAttribute("href")).toBe("/dashboard")
+  const dashboardLink = screen.getByText(/Dashboard/i)
+  expect(dashboardLink).toBeInTheDocument()
+  expect(dashboardLink.getAttribute("href")).toBe("/dashboard")
 
-  const HomeLink = screen.getByText(/Home/i)
-  expect(HomeLink).toBeInTheDocument()
-  expect(HomeLink.getAttribute("href")).toBe("/")
+  const homeLink = screen.getByText(/Home/i)
+  expect(homeLink).toBeInTheDocument()
+  expect(homeLink.getAttribute("href")).toBe("/")
 
-  const FAQLink = screen.getByText(/FAQ/i)
-  expect(FAQLink).toBeInTheDocument()
-  expect(FAQLink.getAttribute("href")).toBe("/FAQ")
+  const faqLink = screen.getByText(/FAQ/i)
+  expect(faqLink).toBeInTheDocument()
+  expect(faqLink.getAttribute("href")).toBe("/FAQ")
 
   const signInLink = screen.getByText(/sign in/i)
   expect(signInLink).toBeInTheDocument()
