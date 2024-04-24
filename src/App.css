@@ -1,0 +1,61 @@
+/* nav/header*/
+.navbar-nav {
+  height: 7vh;
+  background-color: white;
+}
+.left-side-header {
+  display: flex;
+}
+.right-side-header {
+  display: flex;
+  justify-content: end;
+  gap: 2vw;
+}
+.nav-cont {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logo-cont {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bank-logo {
+  width: 5vw;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: "PT Serif", serif;
+  margin-right: 1rem;
+}
+
+.nav-link {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.nav-link:hover {
+  color: #cba86b;
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer-text {
+  color: var(--clr-footer-grey);
+  display: flex;
+  justify-content: end;
+  position: fixed;
+  bottom: 0.9vh;
+  right: 1.5vw;
+  font-size: 2vh;
+}
+
+.github-links {
+  color: var(--clr-home-grey);
+  text-decoration: none;
+}
