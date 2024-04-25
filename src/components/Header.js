@@ -1,5 +1,5 @@
 import React from "react"
-import bankLogo from "../assets/bank.png"
+import bankLogo from "../assets/bank-logo-2.png"
 import { Nav, Button } from "reactstrap"
 import { Link, NavLink } from "react-router-dom"
 
@@ -8,7 +8,7 @@ const Header = () => {
     <Nav className="nav-cont" navbar>
       <div className="logo-cont">
         <div className="left-side-header">
-          <NavLink to="/" className="nav-link">
+          <NavLink to="/">
             <img src={bankLogo} alt="bank buddy logo" className="bank-logo" />
           </NavLink>
           <div className="nav-links">
@@ -39,10 +39,10 @@ const Header = () => {
               to="/signup"
               className="nav-link nav-links"
               style={{
-                borderRadius: "20px",
+                borderRadius: "0.375rem",
                 padding: "10px 20px",
-                backgroundImage: "linear-gradient(to right, #8C52FF, #5CE1E6)",
-                color: "black",
+                backgroundColor: "#8A58FE",
+                color: "white",
               }}
             >
               Sign Up
@@ -54,11 +54,10 @@ const Header = () => {
               to="/"
               className="nav-link nav-links"
               style={{
-                borderRadius: "20px",
+                borderRadius: "0.375rem",
                 padding: "10px 20px",
-                backgroundImage: "linear-gradient(to right, #8C52FF, #5CE1E6)",
-                color: "black",
-                border: "none",
+                backgroundColor: "#8A58FE",
+                color: "white",
                 marginRight: "2rem",
               }}
               // onClick={signOut}
