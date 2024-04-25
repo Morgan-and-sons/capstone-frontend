@@ -170,10 +170,18 @@
   display: none;
 }
 
-.sign-in-form,
-.sign-up-form {
+.sign-in-form {
   width: 40%;
   height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+.sign-up-form {
+  width: 50%;
+  height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
