@@ -32,8 +32,8 @@ const SignUp = ({ signUp }) => {
   return (
     <div className="edit-cont">
       <div className="sign-up-form">
-        <h2 className="">Create an Account</h2>
         <Form onSubmit={handleSubmit(onSubmit)}>
+          <h2 className="sign-up-title">Create an Account</h2>
           <Row>
             <Col md={6}>
               <FormGroup floating>
