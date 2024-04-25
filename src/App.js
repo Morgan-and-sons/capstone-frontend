@@ -22,13 +22,20 @@ const App = () => {
     console.log(newUser)
   }
 
+  const signIn = (user) => {
+    console.log(user)
+  }
+
+  const signOut = (user) => {
+    console.log(user)
+  }
   return (
     <>
-      <Header />
+      <Header currentUser={currentUser} signOut={signOut} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp signUp={signUp} />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn signIn={signIn} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

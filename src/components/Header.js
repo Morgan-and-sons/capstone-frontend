@@ -1,14 +1,14 @@
 import React from "react"
-import bankLogo from "../assets/bank-logo-2.png"
+import bankLogo from "../assets/bank.png"
 import { Nav, Button } from "reactstrap"
 import { Link, NavLink } from "react-router-dom"
 
-const Header = () => {
+const Header = ({ signOut }) => {
   return (
     <Nav className="nav-cont" navbar>
       <div className="logo-cont">
         <div className="left-side-header">
-          <NavLink to="/">
+          <NavLink to="/" className="nav-link">
             <img src={bankLogo} alt="bank buddy logo" className="bank-logo" />
           </NavLink>
           <div className="nav-links">
@@ -39,10 +39,10 @@ const Header = () => {
               to="/signup"
               className="nav-link nav-links"
               style={{
-                borderRadius: "0.375rem",
+                borderRadius: "20px",
                 padding: "10px 20px",
-                backgroundColor: "#8A58FE",
-                color: "white",
+                backgroundImage: "linear-gradient(to right, #8C52FF, #5CE1E6)",
+                color: "black",
               }}
             >
               Sign Up
@@ -54,13 +54,14 @@ const Header = () => {
               to="/"
               className="nav-link nav-links"
               style={{
-                borderRadius: "0.375rem",
+                borderRadius: "20px",
                 padding: "10px 20px",
-                backgroundColor: "#8A58FE",
-                color: "white",
+                backgroundImage: "linear-gradient(to right, #8C52FF, #5CE1E6)",
+                color: "black",
+                border: "none",
                 marginRight: "2rem",
               }}
-              // onClick={signOut}
+              onClick={signOut}
             >
               Sign Out
             </Button>

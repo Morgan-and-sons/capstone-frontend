@@ -11,12 +11,13 @@ const SignIn = ({ signIn }) => {
   } = useForm()
 
   const onSubmit = async (formData) => {
-    const success = await signIn({ user: formData })
-    if (success) {
-      navigate("/")
-    } else {
-      alert("Invalid user")
-    }
+    signIn({ user: formData })
+    // const success = await signIn({ user: formData })
+    // if (success) {
+    //   navigate("/")
+    // } else {
+    //   alert("Invalid user")
+    // }
   }
 
   return (

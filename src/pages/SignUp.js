@@ -13,7 +13,7 @@ const SignUp = ({ signUp }) => {
   } = useForm()
 
   const onSubmit = (newUser) => {
-    signUp(newUser)
+    signUp({ user: newUser })
     navigate("/")
     const formData = new FormData()
     formData.append("firstName", newUser.firstName)
