@@ -8,11 +8,13 @@ test("renders App component", () => {
       <App />
     </BrowserRouter>
   )
+
+  const faqLink = screen.getByRole("link", { name: /FAQ/i, class: "nav-links" })
+
   const bankLogo = screen.getByAltText("bank buddy logo")
   const dashboardLink = screen.getByText("Dashboard")
   const homeLink = screen.getByText("Home")
   const signInLink = screen.getByText("Sign In")
-  const faqLink = screen.getByText("FAQ")
 
   const signUpButton = screen.getByText(/Sign Up/i)
   expect(bankLogo).toBeInTheDocument()
