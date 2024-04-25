@@ -3,7 +3,7 @@ import bankLogo from "../assets/bank.png"
 import { Nav, Button } from "reactstrap"
 import { Link, NavLink } from "react-router-dom"
 
-const Header = () => {
+const Header = ({ signOut }) => {
   return (
     <Nav className="nav-cont" navbar>
       <div className="logo-cont">
@@ -61,7 +61,7 @@ const Header = () => {
                 border: "none",
                 marginRight: "2rem",
               }}
-              // onClick={signOut}
+              onClick={signOut}
             >
               Sign Out
             </Button>
