@@ -1,3 +1,16 @@
+/* Not Found */
+.not-found-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 93vh;
+  background-color: black;
+}
+
+.not-found-mp4 {
+  height: 65dvh;
+}
+
 /* nav/header*/
 .navbar-nav {
   height: 7vh;
@@ -58,4 +71,70 @@
 .github-links {
   color: var(--clr-home-grey);
   text-decoration: none;
+}
+
+/* Pages */
+
+/* Home */
+
+.card-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #ffffff !important;
+}
+
+.card-text {
+  font-size: 1.5rem;
+  color: #ffffff !important;
+}
+
+.card-button {
+  font-size: 1.5rem;
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+}
+
+.title-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  background-image: linear-gradient(to right, #8c52ff, #5ce1e6);
+}
+
+.how-to-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 86vh;
+  background-color: #f5f5f5;
+}
+
+.home1 {
+  display: flex;
+  align-items: center;
+  width: 50vh;
+  height: 50vh;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+}
+
+.features-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 86vh;
+  background-color: #ffffff;
+}
+
+.FAQ-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-image: linear-gradient(to right, #8c52ff, #5ce1e6);
 }
