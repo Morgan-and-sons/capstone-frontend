@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
 import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn"
+import Dashboard from "./pages/Dashboard"
 import { Route, Routes } from "react-router-dom"
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp signUp={signUp} />} />
         <Route path="/signin" element={<SignIn signIn={signIn} />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

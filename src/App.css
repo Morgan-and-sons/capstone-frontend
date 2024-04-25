@@ -200,3 +200,29 @@
   width: 30vw;
   border: none;
 }
+
+/* dashboard */
+.dashboard-cont {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+/* dashboard Overall stats */
+.overall-progress-cont,
+.personal-cont,
+.group-cont {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.progress-bars {
+  width: 50vw;
+  border: 1px black solid;
+  padding: 2vh;
+  border-radius: 10px;
+}
+/* dashboard Card */
+.card-title {
+  color: #000000 !important;
+}
