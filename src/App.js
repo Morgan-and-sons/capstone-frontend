@@ -37,7 +37,16 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp signUp={signUp} />} />
         <Route path="/signin" element={<SignIn signIn={signIn} />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <Dashboard
+              currentUser={currentUser}
+              events={events}
+              eventParticipants={eventParticipants}
+            />
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import {
   Progress,
   Card,
@@ -9,33 +9,56 @@ import {
   OffcanvasBody,
 } from "reactstrap"
 
-const Dashboard = () => {
+const Dashboard = ({ currentUser, events, eventParticipants }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
+  const [userEvents, setUserEvents] = useState(null)
+  const [overallBarVisual, setOverallBarVisual] = useState(0)
 
   const handleToggle = () => {
     setShowOffcanvas(!showOffcanvas)
     console.log(showOffcanvas)
   }
+  useEffect(() => {
+    const currentUserEvents = events.filter(
+      (event) => currentUser.user_id === event.creator
+    )
+    setUserEvents(currentUserEvents[0])
+
+    const overallBar =
+      (currentUserEvents[0].grouptotal / currentUserEvents[0].eventamount) * 100
+    setOverallBarVisual(overallBar)
+
+    const currentEventParticipant = eventParticipants.filter(
+      (participant) => participant.user_id === currentUser.user_id
+    )
+    console.log(currentEventParticipant)
+  }, [])
+
   return (
     <>
       <div>
-        <Button color="primary" onClick={handleToggle}>
+        <Button className="btn-class" onClick={handleToggle}>
           Open
         </Button>
         <Offcanvas isOpen={showOffcanvas} toggle={handleToggle}>
-          <OffcanvasHeader closeButton>
-            <Button onClick={handleToggle}>X</Button>
-            Offcanvas
+          <div className="slide-close-btn-cont">
+            <Button className="slide-close-btn" onClick={handleToggle}>
+              X
+            </Button>
+          </div>
+          <OffcanvasHeader>
+            {currentUser.firstname} {currentUser.lastname}
           </OffcanvasHeader>
           <OffcanvasBody>
-            <strong>This is the Offcanvas body.</strong>
+            <p>{`Username: ${currentUser.username}`}</p>
+            <p>{`Email: ${currentUser.email}`}</p>
           </OffcanvasBody>
         </Offcanvas>
       </div>
 
       <div className="dashboard-cont">
         <div>
-          <h1>{`Welcome {user.username}`}</h1>
+          <h1>{`Welcome ${currentUser.username}`}</h1>
         </div>
 
         <div>
@@ -45,6 +68,7 @@ const Dashboard = () => {
         <div className="overall-progress-cont">
           <h3>Overall Stats</h3>
           <div className="progress-bars">
+            <p>{userEvents && userEvents.title}</p>
             <Progress className="my-2" value="25">
               25.0$
             </Progress>
@@ -76,7 +100,7 @@ const Dashboard = () => {
               <Progress className="my-2" value="25">
                 25.0$
               </Progress>
-              <Button color="primary">Go somewhere</Button>
+              <Button className="btn-class">Go somewhere</Button>
             </Card>
           </div>
         </div>
@@ -92,17 +116,17 @@ const Dashboard = () => {
               }}
             >
               <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
-                Special Title Treatment
+                <p>{userEvents && userEvents.title}</p>
               </CardTitle>
-              <Progress className="my-2" value="25">
-                25.0$
+              <Progress className="my-2" value={overallBarVisual}>
+                <p>{userEvents && userEvents.grouptotal}</p>
               </Progress>
-              <Button color="primary">Go somewhere</Button>
+              <Button className="btn-class">Go somewhere</Button>
             </Card>
           </div>
         </div>
 
-        <button>Add Event</button>
+        <Button className="btn-class">Add Event</Button>
       </div>
     </>
   )

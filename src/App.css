@@ -222,7 +222,25 @@
   padding: 2vh;
   border-radius: 10px;
 }
+.progress-bar {
+  background-color: #8a58fe !important;
+}
 /* dashboard Card */
 .card-title {
   color: #000000 !important;
+}
+.slide-close-btn-cont {
+  display: flex;
+  justify-content: end;
+  padding: 2vh;
+}
+.slide-close-btn {
+  width: 4vw;
+  background-color: #8a58fe !important;
+}
+.btn-class {
+  background-color: #8a58fe !important;
+}
+.offcanvas-title {
+  font-size: 4vh !important;
 }
