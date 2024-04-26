@@ -17,7 +17,11 @@ const Home = () => {
           }}
         >
           <CardBody>
-            <CardTitle className="card-title" tag="h5">
+            <CardTitle
+              className="card-title"
+              tag="h5"
+              style={{ color: "white" }}
+            >
               Bank Buddy
             </CardTitle>
             <CardText className="card-text">
