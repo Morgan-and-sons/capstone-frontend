@@ -18,15 +18,20 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
     setShowOffcanvas(!showOffcanvas)
     console.log(showOffcanvas)
   }
+
   useEffect(() => {
     const currentUserEvents = events.filter(
       (event) => currentUser.user_id === event.creator
     )
-    setUserEvents(currentUserEvents[0])
 
-    const overallBar =
-      (currentUserEvents[0].grouptotal / currentUserEvents[0].eventamount) * 100
-    setOverallBarVisual(overallBar)
+    if (currentUserEvents.length > 0) {
+      setUserEvents(currentUserEvents[0])
+
+      const overallBar =
+        (currentUserEvents[0].grouptotal / currentUserEvents[0].eventamount) *
+        100
+      setOverallBarVisual(overallBar)
+    }
 
     const currentEventParticipant = eventParticipants.filter(
       (participant) => participant.user_id === currentUser.user_id
