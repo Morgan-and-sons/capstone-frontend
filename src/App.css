@@ -81,7 +81,6 @@
 .card-title {
   font-size: 4.5rem;
   font-weight: 700;
-  color: #ffffff !important;
 }
 
 .card-text {
@@ -226,8 +225,8 @@
   background-color: #8a58fe !important;
 }
 /* dashboard Card */
-.card-title {
-  color: #000000 !important;
+.dashboard-card-title {
+  color: black;
 }
 .slide-close-btn-cont {
   display: flex;
