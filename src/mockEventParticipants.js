@@ -15,7 +15,7 @@ const mockEventParticipants = [
     individual_contributions: 22,
   },
   {
-    user_id: 2,
+    user_id: 1,
     event_id: 3,
     individual_contributions: 23,
   },

@@ -8,6 +8,7 @@ import {
   OffcanvasHeader,
   OffcanvasBody,
 } from "reactstrap"
+import DashModal from "../components/DashModal"
 
 const Dashboard = ({ currentUser, events, eventParticipants }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
@@ -36,7 +37,12 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
     const currentEventParticipant = eventParticipants.filter(
       (participant) => participant.user_id === currentUser.user_id
     )
-    console.log(currentEventParticipant)
+
+    const allUserEvents = events.filter(
+      (event) => currentUser.user_id === currentEventParticipant.user_id
+    )
+
+    console.log(allUserEvents)
   }, [])
 
   return (
@@ -60,31 +66,16 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
           </OffcanvasBody>
         </Offcanvas>
       </div>
-
       <div className="dashboard-cont">
         <div>
           <h1>{`Welcome ${currentUser.username}`}</h1>
         </div>
-
-        <div>
-          <h3>Dashboard</h3>
-        </div>
-
         <div className="overall-progress-cont">
           <h3>Overall Stats</h3>
           <div className="progress-bars">
             <p>{userEvents && userEvents.title}</p>
-            <Progress className="my-2" value="25">
-              25.0$
-            </Progress>
-            <Progress className="my-2" value="25">
-              25.0$
-            </Progress>
-            <Progress className="my-2" value="25">
-              25.0$
-            </Progress>
-            <Progress className="my-2" value="25">
-              25.0$
+            <Progress className="my-2" value={overallBarVisual}>
+              <p>{userEvents && userEvents.grouptotal}</p>
             </Progress>
           </div>
         </div>
@@ -99,6 +90,7 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
                 width: "18rem",
               }}
             >
+              <DashModal />
               <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
                 Special Title Treatment
               </CardTitle>
@@ -109,7 +101,6 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
             </Card>
           </div>
         </div>
-
         <div className="group-cont">
           <h3>Group Events</h3>
           <div>
