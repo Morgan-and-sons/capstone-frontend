@@ -22,7 +22,6 @@ const SignUp = ({ signUp }) => {
     formData.append("username", newUser.username)
     formData.append("password", newUser.password)
     formData.append("password_confirmation", newUser.password_confirmation)
-    formData.append("profile_photo", newUser.profile_photo[0])
 
     signUp(formData)
 
@@ -49,7 +48,7 @@ const SignUp = ({ signUp }) => {
                   {...register("firstName", { required: true })}
                 />
                 <Label for="firstName">Enter Your First Name</Label>
-                {errors.email && (
+                {errors.firstName && (
                   <span className="form-validations">
                     First name is required
                   </span>
@@ -70,7 +69,7 @@ const SignUp = ({ signUp }) => {
                   {...register("lastName", { required: true })}
                 />
                 <Label for="lastName">Enter Your Last Name</Label>
-                {errors.email && (
+                {errors.lastName && (
                   <span className="form-validations">
                     Last name is required
                   </span>
@@ -112,7 +111,7 @@ const SignUp = ({ signUp }) => {
                   {...register("username", { required: true })}
                 />
                 <Label for="email">Enter Your Username</Label>
-                {errors.email && (
+                {errors.username && (
                   <span className="form-validations">Username is required</span>
                 )}
               </FormGroup>
@@ -160,20 +159,6 @@ const SignUp = ({ signUp }) => {
               </FormGroup>
             </Col>
           </Row>
-          <FormGroup>
-            <Label for="profile_photo">Profile Photo</Label>
-            <input
-              type="file"
-              name="profile_photo"
-              id="profile_photo"
-              {...register("profile_photo", { required: true })}
-            />
-            {errors.profile_photo && (
-              <span className="form-validations">
-                Profile photo is required
-              </span>
-            )}
-          </FormGroup>
           <button onClick={handleSubmit} className="signin-button">
             Sign Up
           </button>

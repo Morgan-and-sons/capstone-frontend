@@ -14,11 +14,11 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const [userEvents, setUserEvents] = useState(null)
   const [overallBarVisual, setOverallBarVisual] = useState(0)
-
   const handleToggle = () => {
     setShowOffcanvas(!showOffcanvas)
-    console.log(showOffcanvas)
   }
+
+  console.log(currentUser)
 
   useEffect(() => {
     const currentUserEvents = events.filter(
@@ -83,6 +83,24 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
         <div className="personal-cont">
           <h3>Personal Events</h3>
           <div>
+            {events &&
+              events.map((event) => (
+                <Card
+                  body
+                  className="text-center card-body"
+                  style={{
+                    width: "18rem",
+                  }}
+                >
+                  <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
+                    <p>{event && event.title}</p>
+                  </CardTitle>
+                  <Progress className="my-2" value={overallBarVisual}>
+                    <p>{event && event.grouptotal}</p>
+                  </Progress>
+                  <Button className="btn-class">Go somewhere</Button>
+                </Card>
+              ))}
             <Card
               body
               className="text-center card-body"
@@ -112,10 +130,10 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
               }}
             >
               <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
-                <p>{userEvents && userEvents.title}</p>
+                <p>{events && events.title}</p>
               </CardTitle>
               <Progress className="my-2" value={overallBarVisual}>
-                <p>{userEvents && userEvents.grouptotal}</p>
+                <p>{events && events.grouptotal}</p>
               </Progress>
               <Button className="btn-class">Go somewhere</Button>
             </Card>
