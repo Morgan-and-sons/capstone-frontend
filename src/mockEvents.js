@@ -1,5 +1,6 @@
 const mockEvents = [
   {
+    event_id: 1,
     title: "Event 1",
     body: "Mock event 1 body",
     eventphoto:
@@ -10,6 +11,7 @@ const mockEvents = [
     location: "San Diego, CA",
   },
   {
+    event_id: 2,
     title: "Event 2",
     body: "Mock event 2 body",
     eventphoto:
@@ -20,6 +22,7 @@ const mockEvents = [
     location: "San Francisco, CA",
   },
   {
+    event_id: 3,
     title: "Event 3",
     body: "Mock event 3 body",
     eventphoto:
