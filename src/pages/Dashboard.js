@@ -8,7 +8,7 @@ import {
   OffcanvasHeader,
   OffcanvasBody,
 } from "reactstrap"
-import Modal from "../components/Modal"
+import DashModal from "../components/DashModal"
 
 const Dashboard = ({ currentUser, events, eventParticipants }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
@@ -90,7 +90,7 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
                 width: "18rem",
               }}
             >
-              <Modal />
+              <DashModal />
               <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
                 Special Title Treatment
               </CardTitle>
