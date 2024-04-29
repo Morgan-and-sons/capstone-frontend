@@ -8,6 +8,7 @@ import {
   OffcanvasHeader,
   OffcanvasBody,
 } from "reactstrap"
+import Modal from "../components/Modal"
 
 const Dashboard = ({ currentUser, events, eventParticipants }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
@@ -38,13 +39,11 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
     )
 
     const allUserEvents = events.filter(
-      (event) => event.creator === currentEventParticipant.user_id
+      (event) => currentUser.user_id === currentEventParticipant.user_id
     )
 
     console.log(allUserEvents)
   }, [])
-
-}
 
   return (
     <>
@@ -76,8 +75,8 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
           <div className="progress-bars">
             <p>{userEvents && userEvents.title}</p>
             <Progress className="my-2" value={overallBarVisual}>
-                <p>{userEvents && userEvents.grouptotal}</p>
-              </Progress>
+              <p>{userEvents && userEvents.grouptotal}</p>
+            </Progress>
           </div>
         </div>
 
@@ -91,6 +90,7 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
                 width: "18rem",
               }}
             >
+              <Modal />
               <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
                 Special Title Treatment
               </CardTitle>
