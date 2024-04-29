@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 
-const Example = () => {
+const DashModal = () => {
   const [show, setShow] = useState(false)
 
   return (
@@ -38,4 +38,4 @@ const Example = () => {
   )
 }
 
-export default Example
+export default DashModal
