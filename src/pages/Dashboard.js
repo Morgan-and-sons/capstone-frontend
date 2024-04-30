@@ -10,8 +10,9 @@ import {
 } from "reactstrap"
 import DashModal from "../components/DashModal"
 import { Link } from "react-router-dom"
+import { set } from "react-hook-form"
 
-const Dashboard = ({ currentUser }) => {
+const Dashboard = ({ currentUser, updateEvent }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const [userEvents, setUserEvents] = useState(null)
   const [overallBarVisual, setOverallBarVisual] = useState(0)
@@ -42,14 +43,6 @@ const Dashboard = ({ currentUser }) => {
       alert("Ooops something went wrong", error.message)
     }
   }
-
-  useEffect(() => {
-    if (userEvents) {
-      const overallBar = (userEvents.grouptotal / userEvents.eventamount) * 100
-      setOverallBarVisual(overallBar)
-    }
-  }, [userEvents])
-
   return (
     <>
       <div>
@@ -68,6 +61,9 @@ const Dashboard = ({ currentUser }) => {
           <OffcanvasBody>
             <p>{`Username: ${currentUser.username}`}</p>
             <p>{`Email: ${currentUser.email}`}</p>
+            <Link to="/new">
+              <Button className="btn-class">Add Event</Button>
+            </Link>
           </OffcanvasBody>
         </Offcanvas>
       </div>
@@ -118,6 +114,7 @@ const Dashboard = ({ currentUser }) => {
                   <DashModal
                     event={event}
                     currentUser={currentUser}
+                    updateEvent={updateEvent}
                     overallBarVisual={
                       (event.grouptotal / event.eventamount) * 100
                     }

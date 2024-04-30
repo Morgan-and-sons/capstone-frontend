@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn"
 import Dashboard from "./pages/Dashboard"
 import New from "./pages/New"
+import Edit from "./pages/Edit"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
@@ -112,6 +113,24 @@ const App = () => {
     navigate("/dashboard")
   }
 
+  const updateEvent = async (updateEvent, id) => {
+    try {
+      const patchResponse = await fetch("http://localhost:3000/events/${id}", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateEvent),
+      })
+      if (!patchResponse.ok) {
+        throw new Error("Error on the patch request for events")
+      }
+      await patchResponse.json()
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+  }
+
   return (
     <>
       <Header currentUser={currentUser} signOut={signOut} />
@@ -121,11 +140,17 @@ const App = () => {
         <Route path="/signin" element={<SignIn signIn={signIn} />} />
         <Route
           path="/dashboard"
-          element={<Dashboard currentUser={currentUser} />}
+          element={
+            <Dashboard currentUser={currentUser} updateEvent={updateEvent} />
+          }
         />
         <Route
           path="/new"
           element={<New createEvent={createEvent} currentUser={currentUser} />}
+        />
+        <Route
+          path="/edit/${currentUser.id}"
+          element={<Edit currentUser={currentUser} updateEvent={updateEvent} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

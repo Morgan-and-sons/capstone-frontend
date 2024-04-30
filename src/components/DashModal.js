@@ -3,8 +3,9 @@ import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import { Progress } from "reactstrap"
 import { FaTrash, FaEdit } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
-const DashModal = ({ event, overallBarVisual, currentUser }) => {
+const DashModal = ({ event, overallBarVisual, currentUser, updateEvent }) => {
   const [show, setShow] = useState(false)
 
   const isCreator = () => {
@@ -43,9 +44,11 @@ const DashModal = ({ event, overallBarVisual, currentUser }) => {
               <button className="modal-btns">
                 <FaTrash />
               </button>
-              <button className="modal-btns">
-                <FaEdit />
-              </button>
+              <Link to="/edit/${currentUser.id}">
+                <button className="modal-btns">
+                  <FaEdit />
+                </button>
+              </Link>
             </>
           )}
         </div>
