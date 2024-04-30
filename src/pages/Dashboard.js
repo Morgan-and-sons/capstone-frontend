@@ -21,7 +21,6 @@ const Dashboard = ({ currentUser }) => {
   const handleToggle = () => {
     setShowOffcanvas(!showOffcanvas)
   }
-
   const getPermittedEvents = async () => {
     try {
       const getResponse = await fetch(
@@ -43,6 +42,13 @@ const Dashboard = ({ currentUser }) => {
       alert("Ooops something went wrong", error.message)
     }
   }
+
+  useEffect(() => {
+    if (userEvents) {
+      const overallBar = (userEvents.grouptotal / userEvents.eventamount) * 100
+      setOverallBarVisual(overallBar)
+    }
+  }, [userEvents])
 
   return (
     <>
@@ -72,10 +78,18 @@ const Dashboard = ({ currentUser }) => {
         <div className="overall-progress-cont">
           <h3>Overall Stats</h3>
           <div className="progress-bars">
-            <p>{userEvents && userEvents.title}</p>
-            <Progress className="my-2" value={overallBarVisual}>
-              <p>{userEvents && userEvents.grouptotal}</p>
-            </Progress>
+            {userEvents &&
+              userEvents.map((event) => (
+                <div key={event.id}>
+                  <p>{event && event.title}</p>
+                  <Progress
+                    className="my-2"
+                    value={(event.grouptotal / event.eventamount) * 100}
+                  >
+                    <p>{event && event.grouptotal}</p>
+                  </Progress>
+                </div>
+              ))}
           </div>
         </div>
 
@@ -95,37 +109,23 @@ const Dashboard = ({ currentUser }) => {
                   <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
                     <p>{event && event.title}</p>
                   </CardTitle>
-                  <Progress className="my-2" value={overallBarVisual}>
+                  <Progress
+                    className="my-2"
+                    value={(event.grouptotal / event.eventamount) * 100}
+                  >
                     <p>{event && event.grouptotal}</p>
                   </Progress>
                   <DashModal
                     event={event}
-                    overallBarVisual={overallBarVisual}
+                    currentUser={currentUser}
+                    overallBarVisual={
+                      (event.grouptotal / event.eventamount) * 100
+                    }
                   />
                 </Card>
               ))}
           </div>
         </div>
-        {/* <div className="group-cont">
-          <h3>Group Events</h3>
-          <div>
-            <Card
-              body
-              className="text-center card-body"
-              style={{
-                width: "18rem",
-              }}
-            >
-              <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
-                <p>{events && events.title}</p>
-              </CardTitle>
-              <Progress className="my-2" value={overallBarVisual}>
-                <p>{events && events.grouptotal}</p>
-              </Progress>
-              <Button className="btn-class">Go somewhere</Button>
-            </Card>
-          </div>
-        </div> */}
         <Link to="/new">
           <Button className="btn-class">Add Event</Button>
         </Link>

@@ -2,9 +2,14 @@ import React, { useState } from "react"
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import { Progress } from "reactstrap"
+import { FaTrash, FaEdit } from "react-icons/fa"
 
-const DashModal = ({ event, overallBarVisual }) => {
+const DashModal = ({ event, overallBarVisual, currentUser }) => {
   const [show, setShow] = useState(false)
+
+  const isCreator = () => {
+    return currentUser && event.creator === currentUser.id
+  }
 
   return (
     <>
@@ -23,12 +28,27 @@ const DashModal = ({ event, overallBarVisual }) => {
             {event.title}
           </Modal.Title>
         </Modal.Header>
+        <Progress className="my-2" value={overallBarVisual}>
+          <p>{event && event.grouptotal}</p>
+        </Progress>
         <Modal.Body>
           <p>{event.body}</p>
-          <Progress className="my-2" value={overallBarVisual}>
-            <p>{event && event.grouptotal}</p>
-          </Progress>
+          <p>{event.eventamount}</p>
+          <img src={event.eventphoto} alt="Event" />
+          <p>{event.location}</p>
         </Modal.Body>
+        <div className="modal-btns-cont">
+          {isCreator() && (
+            <>
+              <button className="modal-btns">
+                <FaTrash />
+              </button>
+              <button className="modal-btns">
+                <FaEdit />
+              </button>
+            </>
+          )}
+        </div>
       </Modal>
     </>
   )
