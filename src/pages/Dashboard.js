@@ -9,41 +9,40 @@ import {
   OffcanvasBody,
 } from "reactstrap"
 import DashModal from "../components/DashModal"
+import { Link } from "react-router-dom"
 
-const Dashboard = ({ currentUser, events, eventParticipants }) => {
+const Dashboard = ({ currentUser }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const [userEvents, setUserEvents] = useState(null)
   const [overallBarVisual, setOverallBarVisual] = useState(0)
+  useEffect(() => {
+    getPermittedEvents()
+  }, [])
   const handleToggle = () => {
     setShowOffcanvas(!showOffcanvas)
   }
 
-  console.log(currentUser)
-
-  useEffect(() => {
-    const currentUserEvents = events.filter(
-      (event) => currentUser.user_id === event.creator
-    )
-
-    if (currentUserEvents.length > 0) {
-      setUserEvents(currentUserEvents[0])
-
-      const overallBar =
-        (currentUserEvents[0].grouptotal / currentUserEvents[0].eventamount) *
-        100
-      setOverallBarVisual(overallBar)
+  const getPermittedEvents = async () => {
+    try {
+      const getResponse = await fetch(
+        `http://localhost:3000/event_participants/${currentUser.id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      if (!getResponse.ok) {
+        throw new Error("Error on the get request for events")
+      }
+      const getResult = await getResponse.json()
+      setUserEvents(getResult)
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
     }
-
-    const currentEventParticipant = eventParticipants.filter(
-      (participant) => participant.user_id === currentUser.user_id
-    )
-
-    const allUserEvents = events.filter(
-      (event) => currentUser.user_id === currentEventParticipant.user_id
-    )
-
-    console.log(allUserEvents)
-  }, [])
+  }
 
   return (
     <>
@@ -83,9 +82,10 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
         <div className="personal-cont">
           <h3>Personal Events</h3>
           <div>
-            {events &&
-              events.map((event) => (
+            {userEvents &&
+              userEvents.map((event) => (
                 <Card
+                  key={event.id}
                   body
                   className="text-center card-body"
                   style={{
@@ -98,28 +98,15 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
                   <Progress className="my-2" value={overallBarVisual}>
                     <p>{event && event.grouptotal}</p>
                   </Progress>
-                  <Button className="btn-class">Go somewhere</Button>
+                  <DashModal
+                    event={event}
+                    overallBarVisual={overallBarVisual}
+                  />
                 </Card>
               ))}
-            <Card
-              body
-              className="text-center card-body"
-              style={{
-                width: "18rem",
-              }}
-            >
-              <DashModal />
-              <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
-                Special Title Treatment
-              </CardTitle>
-              <Progress className="my-2" value="25">
-                25.0$
-              </Progress>
-              <Button className="btn-class">Go somewhere</Button>
-            </Card>
           </div>
         </div>
-        <div className="group-cont">
+        {/* <div className="group-cont">
           <h3>Group Events</h3>
           <div>
             <Card
@@ -138,9 +125,10 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
               <Button className="btn-class">Go somewhere</Button>
             </Card>
           </div>
-        </div>
-
-        <Button className="btn-class">Add Event</Button>
+        </div> */}
+        <Link to="/new">
+          <Button className="btn-class">Add Event</Button>
+        </Link>
       </div>
     </>
   )

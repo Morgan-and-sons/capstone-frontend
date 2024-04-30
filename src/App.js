@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react"
 import "./App.css"
-import mockEventParticipants from "./mockEventParticipants"
-import mockEvents from "./mockEvents"
-import mockUsers from "./mockUsers"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import NotFound from "./pages/NotFound"
@@ -10,20 +7,17 @@ import Home from "./pages/Home"
 import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn"
 import Dashboard from "./pages/Dashboard"
+import New from "./pages/New"
 import { Route, Routes } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const App = () => {
-  const [events, setEvents] = useState([])
-  useEffect(() => {
-    getPermittedEvents()
-  }, [])
-  const [eventParticipants, setEventParticipants] = useState(
-    mockEventParticipants
-  )
   const [currentUser, setCurrentUser] = useState(null)
 
+  const navigate = useNavigate()
+
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("currentUser")
+    const loggedInUser = localStorage.getItem("user")
     if (loggedInUser) {
       setCurrentUser(JSON.parse(loggedInUser))
     }
@@ -99,44 +93,25 @@ const App = () => {
     }
   }
 
-  // const getEvents = async () => {
-  //   try {
-  //     const getResponse = await fetch("http://localhost:3000/events")
-  //     if (!getResponse.ok) {
-  //       throw new Error("Error on the get request for events")
-  //     }
-  //     const getResult = await getResponse.json()
-  //     setEvents(getResult)
-  //   } catch (error) {
-  //     alert("Ooops something went wrong", error.message)
-  //   }
-  // }
-
-  const getPermittedEvents = async () => {
+  const createEvent = async (event) => {
     try {
-      const getResponse = await fetch(
-        `http://localhost:3000/event_participants/${currentUser.id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      )
-      if (!getResponse.ok) {
-        throw new Error("Error on the get request for events")
+      const createResponse = await fetch("http://localhost:3000/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(event),
+      })
+      if (!createResponse.ok) {
+        throw new Error("Error on the post request for events")
       }
-      const getResult = await getResponse.json()
-      setEvents(getResult)
+      await createResponse.json()
     } catch (error) {
       alert("Ooops something went wrong", error.message)
     }
+    navigate("/dashboard")
   }
 
-  console.log(currentUser.id)
-  console.log(currentUser)
-  console.log(events)
   return (
     <>
       <Header currentUser={currentUser} signOut={signOut} />
@@ -146,13 +121,11 @@ const App = () => {
         <Route path="/signin" element={<SignIn signIn={signIn} />} />
         <Route
           path="/dashboard"
-          element={
-            <Dashboard
-              currentUser={currentUser}
-              events={events}
-              eventParticipants={eventParticipants}
-            />
-          }
+          element={<Dashboard currentUser={currentUser} />}
+        />
+        <Route
+          path="/new"
+          element={<New createEvent={createEvent} currentUser={currentUser} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
