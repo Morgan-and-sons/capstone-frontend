@@ -29,7 +29,7 @@ const App = () => {
     }
   }, [])
 
-  const signUp = async (currentUser) => {
+  const signUp = async (newUser) => {
     try {
       const signUpResponse = await fetch("http://localhost:3000/signup", {
         method: "POST",
@@ -37,11 +37,12 @@ const App = () => {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify(currentUser),
+        body: JSON.stringify(newUser),
       })
       if (!signUpResponse) {
         throw new Error(signUpResponse.errors)
       }
+      console.log(signUpResponse)
       const payload = await signUpResponse.json()
       localStorage.setItem("token", signUpResponse.headers.get("Authorization"))
       localStorage.setItem("currentUser", JSON.stringify(payload))

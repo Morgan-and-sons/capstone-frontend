@@ -39,7 +39,7 @@ const Dashboard = ({ currentUser, deleteEvent }) => {
       const getResult = await getResponse.json()
       setUserEvents(getResult)
     } catch (error) {
-      alert("Ooops something went wrong", error.message)
+      console.log("Ooops something went wrong", error.message)
     }
   }
 

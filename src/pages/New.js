@@ -13,7 +13,6 @@ const New = ({ createEvent, currentUser }) => {
     newEvent.user_id = currentUser.id
     newEvent.creator = currentUser.id
     createEvent(newEvent)
-    console.log("New event created:", newEvent)
   }
 
   return (

@@ -15,17 +15,7 @@ const SignUp = ({ signUp }) => {
   const onSubmit = (newUser) => {
     signUp({ user: newUser })
     navigate("/")
-    const formData = new FormData()
-    formData.append("firstName", newUser.firstName)
-    formData.append("lastName", newUser.lastName)
-    formData.append("email", newUser.email)
-    formData.append("username", newUser.username)
-    formData.append("password", newUser.password)
-    formData.append("password_confirmation", newUser.password_confirmation)
-
-    signUp(formData)
-
-    navigate("/")
+    console.log(newUser)
   }
 
   return (
@@ -40,15 +30,15 @@ const SignUp = ({ signUp }) => {
                   style={{
                     width: "15vw",
                   }}
-                  id="firstName"
-                  name="firstName"
+                  id="firsname"
+                  name="firstname"
                   placeholder="First Name"
                   type="text"
                   className="form-control"
-                  {...register("firstName", { required: true })}
+                  {...register("firstname", { required: true })}
                 />
-                <Label for="firstName">Enter Your First Name</Label>
-                {errors.firstName && (
+                <Label for="firstname">Enter Your First Name</Label>
+                {errors.firstname && (
                   <span className="form-validations">
                     First name is required
                   </span>
@@ -61,15 +51,15 @@ const SignUp = ({ signUp }) => {
                   style={{
                     width: "15vw",
                   }}
-                  id="lastName"
-                  name="lastName"
+                  id="lastname"
+                  name="lastname"
                   placeholder="Last Name"
                   type="text"
                   className="form-control"
-                  {...register("lastName", { required: true })}
+                  {...register("lastname", { required: true })}
                 />
-                <Label for="lastName">Enter Your Last Name</Label>
-                {errors.lastName && (
+                <Label for="lastname">Enter Your Last Name</Label>
+                {errors.lastname && (
                   <span className="form-validations">
                     Last name is required
                   </span>
@@ -110,7 +100,7 @@ const SignUp = ({ signUp }) => {
                   className="form-control"
                   {...register("username", { required: true })}
                 />
-                <Label for="email">Enter Your Username</Label>
+                <Label for="username">Enter Your Username</Label>
                 {errors.username && (
                   <span className="form-validations">Username is required</span>
                 )}
@@ -159,7 +149,32 @@ const SignUp = ({ signUp }) => {
               </FormGroup>
             </Col>
           </Row>
-          <button onClick={handleSubmit} className="signin-button">
+          <Row>
+            <FormGroup floating>
+              <input
+                style={{
+                  width: "15vw",
+                }}
+                id="profile_photo_url"
+                name="profile_photo_url"
+                placeholder="Profile photo url"
+                type="text"
+                className="form-control"
+                {...register("profile_photo_url", { required: true })}
+              />
+              <Label for="profile_photo_url">Profile photo url</Label>
+              {errors.profile_photo_url && (
+                <span className="form-validations">
+                  Profile photo url is required
+                </span>
+              )}
+            </FormGroup>
+          </Row>
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            className="signin-button"
+          >
             Sign Up
           </button>
           <p style={{ marginTop: "2vh" }}>
