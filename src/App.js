@@ -152,7 +152,18 @@ const App = () => {
     }
   }
 
-  console.log(event)
+  const deleteEvent = async (id) => {
+    try {
+      const deleteResponse = await fetch(`http://localhost:3000/events/${id}`, {
+        method: "DELETE",
+      })
+      if (!deleteResponse.ok) {
+        throw new Error("Error on the delete request for events")
+      }
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+  }
 
   return (
     <>
@@ -163,7 +174,9 @@ const App = () => {
         <Route path="/signin" element={<SignIn signIn={signIn} />} />
         <Route
           path="/dashboard"
-          element={<Dashboard currentUser={currentUser} />}
+          element={
+            <Dashboard deleteEvent={deleteEvent} currentUser={currentUser} />
+          }
         />
         <Route
           path="/new"

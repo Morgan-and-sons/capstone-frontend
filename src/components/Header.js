@@ -3,7 +3,7 @@ import bankLogo from "../assets/bank-logo-2.png"
 import { Nav, Button } from "reactstrap"
 import { Link, NavLink } from "react-router-dom"
 
-const Header = ({ signOut }) => {
+const Header = ({ signOut, currentUser }) => {
   return (
     <Nav className="nav-cont" navbar>
       <div className="logo-cont">

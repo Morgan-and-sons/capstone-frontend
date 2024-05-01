@@ -11,7 +11,7 @@ import {
 import DashModal from "../components/DashModal"
 import { Link } from "react-router-dom"
 
-const Dashboard = ({ currentUser }) => {
+const Dashboard = ({ currentUser, deleteEvent }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const [userEvents, setUserEvents] = useState(null)
   useEffect(() => {
@@ -117,6 +117,8 @@ const Dashboard = ({ currentUser }) => {
                     overallBarVisual={
                       (event.grouptotal / event.eventamount) * 100
                     }
+                    deleteEvent={deleteEvent}
+                    getPermittedEvents={getPermittedEvents}
                   />
                 </Card>
               ))}
