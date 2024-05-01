@@ -1,7 +1,7 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import { Col, Form, FormGroup, Label, Row } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 const AddEventParticipant = ({ event, createEventParticipant }) => {
   const {
@@ -12,6 +12,7 @@ const AddEventParticipant = ({ event, createEventParticipant }) => {
 
   const onSubmit = (newEventParticipant) => {
     createEventParticipant(newEventParticipant)
+    console.log(newEventParticipant)
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className="form-size">
@@ -42,7 +43,6 @@ const AddEventParticipant = ({ event, createEventParticipant }) => {
               style={{
                 width: "30vw",
               }}
-              value={`${event.id}`}
               id="event_id"
               name="event_id"
               type="text"

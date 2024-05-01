@@ -126,6 +126,7 @@ const App = () => {
         throw new Error("Error on the post request for events")
       }
       await createResponse.json()
+      getEvents()
     } catch (error) {
       alert("Ooops something went wrong", error.message)
     }
