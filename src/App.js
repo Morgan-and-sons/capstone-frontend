@@ -9,9 +9,9 @@ import SignIn from "./pages/SignIn"
 import Dashboard from "./pages/Dashboard"
 import New from "./pages/New"
 import Edit from "./pages/Edit"
+import AddEventParticipant from "./pages/AddEventParticipant"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-import { get } from "react-hook-form"
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
@@ -166,6 +166,28 @@ const App = () => {
     }
   }
 
+  const createEventParticipant = async (event) => {
+    try {
+      const createResponse = await fetch(
+        "http://localhost:3000/event_participants",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(event),
+        }
+      )
+      if (!createResponse.ok) {
+        throw new Error("Error on the post request for event participants")
+      }
+      await createResponse.json()
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+    navigate("/dashboard")
+  }
+
   return (
     <>
       <Header currentUser={currentUser} signOut={signOut} />
@@ -190,6 +212,15 @@ const App = () => {
               currentUser={currentUser}
               updateEvent={updateEvent}
               event={event}
+            />
+          }
+        />
+        <Route
+          path="/add-event-participant/:id"
+          element={
+            <AddEventParticipant
+              event={event}
+              createEventParticipant={createEventParticipant}
             />
           }
         />

@@ -53,6 +53,9 @@ const DashModal = ({
         <div className="modal-btns-cont">
           {isCreator() && (
             <>
+              <Link to={`/add-event-participant/${event.id}`}>
+                <button className="modal-btns">Add User</button>
+              </Link>
               <button className="modal-btns" onClick={deleteUserEvent}>
                 <FaTrash />
               </button>
