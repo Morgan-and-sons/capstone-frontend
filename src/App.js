@@ -11,9 +11,14 @@ import New from "./pages/New"
 import Edit from "./pages/Edit"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import { get } from "react-hook-form"
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
+  const [event, setEvent] = useState(null)
+  useEffect(() => {
+    getEvents()
+  }, [])
 
   const navigate = useNavigate()
 
@@ -94,6 +99,19 @@ const App = () => {
     }
   }
 
+  const getEvents = async () => {
+    try {
+      const getResponse = await fetch("http://localhost:3000/events")
+      if (!getResponse.ok) {
+        throw new Error("Error on the get request for events")
+      }
+      const getResult = await getResponse.json()
+      setEvent(getResult)
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+  }
+
   const createEvent = async (event) => {
     try {
       const createResponse = await fetch("http://localhost:3000/events", {
@@ -113,23 +131,28 @@ const App = () => {
     navigate("/dashboard")
   }
 
-  const updateEvent = async (updateEvent, id) => {
+  const updateEvent = async (id, editEvent) => {
+    console.log(id)
+    console.log(editEvent)
     try {
-      const patchResponse = await fetch("http://localhost:3000/events/${id}", {
+      const patchResponse = await fetch(`http://localhost:3000/events/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updateEvent),
+        body: JSON.stringify(editEvent),
       })
       if (!patchResponse.ok) {
         throw new Error("Error on the patch request for events")
       }
       await patchResponse.json()
+      getEvents()
     } catch (error) {
       alert("Ooops something went wrong", error.message)
     }
   }
+
+  console.log(event)
 
   return (
     <>
@@ -140,17 +163,21 @@ const App = () => {
         <Route path="/signin" element={<SignIn signIn={signIn} />} />
         <Route
           path="/dashboard"
-          element={
-            <Dashboard currentUser={currentUser} updateEvent={updateEvent} />
-          }
+          element={<Dashboard currentUser={currentUser} />}
         />
         <Route
           path="/new"
           element={<New createEvent={createEvent} currentUser={currentUser} />}
         />
         <Route
-          path="/edit/${currentUser.id}"
-          element={<Edit currentUser={currentUser} updateEvent={updateEvent} />}
+          path="/edit/:id"
+          element={
+            <Edit
+              currentUser={currentUser}
+              updateEvent={updateEvent}
+              event={event}
+            />
+          }
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

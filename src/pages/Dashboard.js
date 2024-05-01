@@ -10,18 +10,17 @@ import {
 } from "reactstrap"
 import DashModal from "../components/DashModal"
 import { Link } from "react-router-dom"
-import { set } from "react-hook-form"
 
-const Dashboard = ({ currentUser, updateEvent }) => {
+const Dashboard = ({ currentUser }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const [userEvents, setUserEvents] = useState(null)
-  const [overallBarVisual, setOverallBarVisual] = useState(0)
   useEffect(() => {
     getPermittedEvents()
   }, [])
   const handleToggle = () => {
     setShowOffcanvas(!showOffcanvas)
   }
+
   const getPermittedEvents = async () => {
     try {
       const getResponse = await fetch(
@@ -43,6 +42,7 @@ const Dashboard = ({ currentUser, updateEvent }) => {
       alert("Ooops something went wrong", error.message)
     }
   }
+
   return (
     <>
       <div>
@@ -114,7 +114,6 @@ const Dashboard = ({ currentUser, updateEvent }) => {
                   <DashModal
                     event={event}
                     currentUser={currentUser}
-                    updateEvent={updateEvent}
                     overallBarVisual={
                       (event.grouptotal / event.eventamount) * 100
                     }

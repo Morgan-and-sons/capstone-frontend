@@ -5,7 +5,7 @@ import { Progress } from "reactstrap"
 import { FaTrash, FaEdit } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
-const DashModal = ({ event, overallBarVisual, currentUser, updateEvent }) => {
+const DashModal = ({ event, overallBarVisual, currentUser }) => {
   const [show, setShow] = useState(false)
 
   const isCreator = () => {
@@ -44,7 +44,7 @@ const DashModal = ({ event, overallBarVisual, currentUser, updateEvent }) => {
               <button className="modal-btns">
                 <FaTrash />
               </button>
-              <Link to="/edit/${currentUser.id}">
+              <Link to={`/edit/${event.id}`}>
                 <button className="modal-btns">
                   <FaEdit />
                 </button>
