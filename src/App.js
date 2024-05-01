@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom"
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
   const [event, setEvent] = useState(null)
+  const [eventId, setEventId] = useState(null)
   useEffect(() => {
     getEvents()
   }, [])
@@ -199,7 +200,11 @@ const App = () => {
         <Route
           path="/dashboard"
           element={
-            <Dashboard deleteEvent={deleteEvent} currentUser={currentUser} />
+            <Dashboard
+              deleteEvent={deleteEvent}
+              currentUser={currentUser}
+              setEventId={setEventId}
+            />
           }
         />
         <Route
@@ -222,6 +227,7 @@ const App = () => {
             <AddEventParticipant
               event={event}
               createEventParticipant={createEventParticipant}
+              eventId={eventId}
             />
           }
         />

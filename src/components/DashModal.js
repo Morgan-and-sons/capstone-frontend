@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import { Progress } from "reactstrap"
@@ -11,8 +11,12 @@ const DashModal = ({
   currentUser,
   deleteEvent,
   getPermittedEvents,
+  setEventId,
 }) => {
   const [show, setShow] = useState(false)
+  useEffect(() => {
+    setEventId(event.id)
+  }, [])
 
   const isCreator = () => {
     return currentUser && event.creator === currentUser.id

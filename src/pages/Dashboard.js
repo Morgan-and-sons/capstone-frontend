@@ -7,11 +7,12 @@ import {
   Offcanvas,
   OffcanvasHeader,
   OffcanvasBody,
+  setEventId,
 } from "reactstrap"
 import DashModal from "../components/DashModal"
 import { Link } from "react-router-dom"
 
-const Dashboard = ({ currentUser, deleteEvent }) => {
+const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const [userEvents, setUserEvents] = useState(null)
   useEffect(() => {
@@ -119,6 +120,7 @@ const Dashboard = ({ currentUser, deleteEvent }) => {
                     }
                     deleteEvent={deleteEvent}
                     getPermittedEvents={getPermittedEvents}
+                    setEventId={setEventId}
                   />
                 </Card>
               ))}

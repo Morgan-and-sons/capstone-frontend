@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { Col, Form, FormGroup, Label, Row } from "reactstrap"
 import { Link, useParams } from "react-router-dom"
 
-const AddEventParticipant = ({ event, createEventParticipant }) => {
+const AddEventParticipant = ({ eventId, createEventParticipant }) => {
   const {
     register,
     handleSubmit,
@@ -47,6 +47,8 @@ const AddEventParticipant = ({ event, createEventParticipant }) => {
               name="event_id"
               type="text"
               className="form-control"
+              value={eventId}
+              readOnly
               {...register("event_id", { required: true })}
             />
             {errors.event_id && (
