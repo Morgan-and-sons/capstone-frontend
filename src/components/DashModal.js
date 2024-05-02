@@ -55,6 +55,10 @@ const DashModal = ({
           <p>{event.location}</p>
         </Modal.Body>
         <div className="modal-btns-cont">
+          <Link to={`/update-contribution/${event.id}`}>
+            <button className="modal-btns">Add Contribution</button>
+          </Link>
+
           {isCreator() && (
             <>
               <Link to={`/add-event-participant/${event.id}`}>

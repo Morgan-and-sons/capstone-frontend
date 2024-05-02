@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard"
 import New from "./pages/New"
 import Edit from "./pages/Edit"
 import AddEventParticipant from "./pages/AddEventParticipant"
+import UpdateIndividualContribution from "./pages/UpdateIndividualContribution"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
@@ -187,6 +188,26 @@ const App = () => {
     navigate("/dashboard")
   }
 
+  const updateIndividualContribution = async (id, updatedData) => {
+    console.log(id)
+    console.log(updatedData)
+    try {
+      const patchResponse = await fetch(`/event_participants/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      })
+      if (!patchResponse.ok) {
+        throw new Error("Error on the patch request for events")
+      }
+      await patchResponse.json()
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+  }
+
   return (
     <>
       <Header currentUser={currentUser} signOut={signOut} />
@@ -224,6 +245,16 @@ const App = () => {
             <AddEventParticipant
               event={event}
               createEventParticipant={createEventParticipant}
+              eventId={eventId}
+            />
+          }
+        />
+        <Route
+          path="/update-contribution/:id"
+          element={
+            <UpdateIndividualContribution
+              updateIndividualContribution={updateIndividualContribution}
+              currentUser={currentUser}
               eventId={eventId}
             />
           }
