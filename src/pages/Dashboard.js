@@ -37,7 +37,6 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
         throw new Error("Error on the get request for events")
       }
       const getResult = await getResponse.json()
-      console.log(getResult)
       setUserEvents(getResult)
     } catch (error) {
       console.log("Ooops something went wrong", error.message)

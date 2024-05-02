@@ -192,13 +192,16 @@ const App = () => {
 
   const updateIndividualContribution = async (id, updatedData) => {
     try {
-      const patchResponse = await fetch(`/event_participants/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      })
+      const patchResponse = await fetch(
+        `http://localhost:3000/event_participants/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        }
+      )
       if (!patchResponse.ok) {
         throw new Error("Error on the patch request for events")
       }
@@ -218,7 +221,6 @@ const App = () => {
       }
       const getResult = await getResponse.json()
       setEventParticipants(getResult)
-      console.log(eventParticipants)
     } catch (error) {
       alert("Ooops something went wrong", error.message)
     }

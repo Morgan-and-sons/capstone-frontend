@@ -13,6 +13,10 @@ const DashModal = ({
   getPermittedEvents,
   setEventId,
 }) => {
+  const eventParticipantId = event.event_participants.find(
+    (obj) => obj.user_id === currentUser.id
+  ).id
+
   const [show, setShow] = useState(false)
   useEffect(() => {
     setEventId(event.id)
@@ -55,7 +59,7 @@ const DashModal = ({
           <p>{event.location}</p>
         </Modal.Body>
         <div className="modal-btns-cont">
-          <Link to={`/update-contribution/${event.id}`}>
+          <Link to={`/update-contribution/${eventParticipantId}`}>
             <button className="modal-btns">Add Contribution</button>
           </Link>
 

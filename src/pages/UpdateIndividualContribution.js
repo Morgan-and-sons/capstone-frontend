@@ -7,7 +7,6 @@ const UpdateIndividualContribution = ({
   updateIndividualContribution,
   currentUser,
   eventId,
-  eventParticipants,
 }) => {
   const {
     register,
@@ -16,11 +15,6 @@ const UpdateIndividualContribution = ({
   } = useForm()
 
   const { id } = useParams()
-  const participant = eventParticipants.find(
-    (participant) => participant.event_id === eventId
-  )
-  console.log(eventParticipants)
-
   const onSubmit = (formData) => {
     updateIndividualContribution(id, formData)
   }
