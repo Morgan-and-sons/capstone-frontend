@@ -7,6 +7,7 @@ const UpdateIndividualContribution = ({
   updateIndividualContribution,
   currentUser,
   eventId,
+  eventParticipants,
 }) => {
   const {
     register,
@@ -14,9 +15,16 @@ const UpdateIndividualContribution = ({
     formState: { errors },
   } = useForm()
 
+  const { id } = useParams()
+  const participant = eventParticipants.find(
+    (participant) => participant.event_id === eventId
+  )
+  console.log(eventParticipants)
+
   const onSubmit = (formData) => {
-    updateIndividualContribution(currentUser.id, formData)
+    updateIndividualContribution(id, formData)
   }
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className="form-size">
       <h3 className="title-header center-content">Add Contributions</h3>

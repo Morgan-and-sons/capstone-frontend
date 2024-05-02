@@ -18,8 +18,10 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
   const [event, setEvent] = useState(null)
   const [eventId, setEventId] = useState(null)
+  const [eventParticipants, setEventParticipants] = useState(null)
   useEffect(() => {
     getEvents()
+    getEventParticipants()
   }, [])
 
   const navigate = useNavigate()
@@ -189,8 +191,6 @@ const App = () => {
   }
 
   const updateIndividualContribution = async (id, updatedData) => {
-    console.log(id)
-    console.log(updatedData)
     try {
       const patchResponse = await fetch(`/event_participants/${id}`, {
         method: "PATCH",
@@ -203,6 +203,22 @@ const App = () => {
         throw new Error("Error on the patch request for events")
       }
       await patchResponse.json()
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+  }
+
+  const getEventParticipants = async () => {
+    try {
+      const getResponse = await fetch(
+        "http://localhost:3000/event_participants"
+      )
+      if (!getResponse.ok) {
+        throw new Error("Error on the get request for events")
+      }
+      const getResult = await getResponse.json()
+      setEventParticipants(getResult)
+      console.log(eventParticipants)
     } catch (error) {
       alert("Ooops something went wrong", error.message)
     }
@@ -256,6 +272,7 @@ const App = () => {
               updateIndividualContribution={updateIndividualContribution}
               currentUser={currentUser}
               eventId={eventId}
+              eventParticipants={eventParticipants}
             />
           }
         />
