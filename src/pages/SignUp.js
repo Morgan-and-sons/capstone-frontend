@@ -15,7 +15,6 @@ const SignUp = ({ signUp }) => {
   const onSubmit = (newUser) => {
     signUp({ user: newUser })
     navigate("/")
-    console.log(newUser)
   }
 
   return (

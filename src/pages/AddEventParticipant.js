@@ -12,7 +12,6 @@ const AddEventParticipant = ({ eventId, createEventParticipant }) => {
 
   const onSubmit = (newEventParticipant) => {
     createEventParticipant(newEventParticipant)
-    console.log(newEventParticipant)
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className="form-size">
@@ -20,7 +19,7 @@ const AddEventParticipant = ({ eventId, createEventParticipant }) => {
       <Row>
         <Col md={6}>
           <FormGroup>
-            <Label for="user_id">User ID</Label>
+            <Label for="user_id">User's Email</Label>
             <input
               style={{
                 width: "30vw",

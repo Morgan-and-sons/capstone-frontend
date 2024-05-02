@@ -43,7 +43,6 @@ const App = () => {
       if (!signUpResponse) {
         throw new Error(signUpResponse.errors)
       }
-      console.log(signUpResponse)
       const payload = await signUpResponse.json()
       localStorage.setItem("token", signUpResponse.headers.get("Authorization"))
       localStorage.setItem("currentUser", JSON.stringify(payload))
@@ -135,8 +134,6 @@ const App = () => {
   }
 
   const updateEvent = async (id, editEvent) => {
-    console.log(id)
-    console.log(editEvent)
     try {
       const patchResponse = await fetch(`http://localhost:3000/events/${id}`, {
         method: "PATCH",
