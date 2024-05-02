@@ -7,43 +7,42 @@ import {
   Offcanvas,
   OffcanvasHeader,
   OffcanvasBody,
+  setEventId,
 } from "reactstrap"
 import DashModal from "../components/DashModal"
+import { Link } from "react-router-dom"
 
-const Dashboard = ({ currentUser, events, eventParticipants }) => {
+const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const [userEvents, setUserEvents] = useState(null)
-  const [overallBarVisual, setOverallBarVisual] = useState(0)
+  useEffect(() => {
+    getPermittedEvents()
+  }, [])
   const handleToggle = () => {
     setShowOffcanvas(!showOffcanvas)
   }
 
-  console.log(currentUser)
-
-  useEffect(() => {
-    const currentUserEvents = events.filter(
-      (event) => currentUser.user_id === event.creator
-    )
-
-    if (currentUserEvents.length > 0) {
-      setUserEvents(currentUserEvents[0])
-
-      const overallBar =
-        (currentUserEvents[0].grouptotal / currentUserEvents[0].eventamount) *
-        100
-      setOverallBarVisual(overallBar)
+  const getPermittedEvents = async () => {
+    try {
+      const getResponse = await fetch(
+        `http://localhost:3000/event_participants/${currentUser.id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+      if (!getResponse.ok) {
+        throw new Error("Error on the get request for events")
+      }
+      const getResult = await getResponse.json()
+      setUserEvents(getResult)
+    } catch (error) {
+      console.log("Ooops something went wrong", error.message)
     }
-
-    const currentEventParticipant = eventParticipants.filter(
-      (participant) => participant.user_id === currentUser.user_id
-    )
-
-    const allUserEvents = events.filter(
-      (event) => currentUser.user_id === currentEventParticipant.user_id
-    )
-
-    console.log(allUserEvents)
-  }, [])
+  }
 
   return (
     <>
@@ -63,6 +62,9 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
           <OffcanvasBody>
             <p>{`Username: ${currentUser.username}`}</p>
             <p>{`Email: ${currentUser.email}`}</p>
+            <Link to="/new">
+              <Button className="btn-class">Add Event</Button>
+            </Link>
           </OffcanvasBody>
         </Offcanvas>
       </div>
@@ -73,19 +75,28 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
         <div className="overall-progress-cont">
           <h3>Overall Stats</h3>
           <div className="progress-bars">
-            <p>{userEvents && userEvents.title}</p>
-            <Progress className="my-2" value={overallBarVisual}>
-              <p>{userEvents && userEvents.grouptotal}</p>
-            </Progress>
+            {userEvents &&
+              userEvents.map((event) => (
+                <div key={event.id}>
+                  <p>{event && event.title}</p>
+                  <Progress
+                    className="my-2"
+                    value={(event.grouptotal / event.eventamount) * 100}
+                  >
+                    <p>{event && event.grouptotal}</p>
+                  </Progress>
+                </div>
+              ))}
           </div>
         </div>
 
         <div className="personal-cont">
           <h3>Personal Events</h3>
           <div>
-            {events &&
-              events.map((event) => (
+            {userEvents &&
+              userEvents.map((event) => (
                 <Card
+                  key={event.id}
                   body
                   className="text-center card-body"
                   style={{
@@ -95,52 +106,29 @@ const Dashboard = ({ currentUser, events, eventParticipants }) => {
                   <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
                     <p>{event && event.title}</p>
                   </CardTitle>
-                  <Progress className="my-2" value={overallBarVisual}>
+                  <Progress
+                    className="my-2"
+                    value={(event.grouptotal / event.eventamount) * 100}
+                  >
                     <p>{event && event.grouptotal}</p>
                   </Progress>
-                  <Button className="btn-class">Go somewhere</Button>
+                  <DashModal
+                    event={event}
+                    currentUser={currentUser}
+                    overallBarVisual={
+                      (event.grouptotal / event.eventamount) * 100
+                    }
+                    deleteEvent={deleteEvent}
+                    getPermittedEvents={getPermittedEvents}
+                    setEventId={setEventId}
+                  />
                 </Card>
               ))}
-            <Card
-              body
-              className="text-center card-body"
-              style={{
-                width: "18rem",
-              }}
-            >
-              <DashModal />
-              <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
-                Special Title Treatment
-              </CardTitle>
-              <Progress className="my-2" value="25">
-                25.0$
-              </Progress>
-              <Button className="btn-class">Go somewhere</Button>
-            </Card>
           </div>
         </div>
-        <div className="group-cont">
-          <h3>Group Events</h3>
-          <div>
-            <Card
-              body
-              className="text-center card-body"
-              style={{
-                width: "18rem",
-              }}
-            >
-              <CardTitle tag="h5" style={{ fontSize: "4vh" }}>
-                <p>{events && events.title}</p>
-              </CardTitle>
-              <Progress className="my-2" value={overallBarVisual}>
-                <p>{events && events.grouptotal}</p>
-              </Progress>
-              <Button className="btn-class">Go somewhere</Button>
-            </Card>
-          </div>
-        </div>
-
-        <Button className="btn-class">Add Event</Button>
+        <Link to="/new">
+          <Button className="btn-class">Add Event</Button>
+        </Link>
       </div>
     </>
   )

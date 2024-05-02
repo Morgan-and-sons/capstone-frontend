@@ -1,9 +1,32 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
+import { Progress } from "reactstrap"
+import { FaTrash, FaEdit } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
-const DashModal = () => {
+const DashModal = ({
+  event,
+  overallBarVisual,
+  currentUser,
+  deleteEvent,
+  getPermittedEvents,
+  setEventId,
+}) => {
   const [show, setShow] = useState(false)
+  useEffect(() => {
+    setEventId(event.id)
+  }, [])
+
+  const isCreator = () => {
+    return currentUser && event.creator === currentUser.id
+  }
+
+  const deleteUserEvent = () => {
+    deleteEvent(event.id)
+    getPermittedEvents()
+    setShow(false)
+  }
 
   return (
     <>
@@ -19,20 +42,35 @@ const DashModal = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            Custom Modal Styling
+            {event.title}
           </Modal.Title>
         </Modal.Header>
+        <Progress className="my-2" value={overallBarVisual}>
+          <p>{event && event.grouptotal}</p>
+        </Progress>
         <Modal.Body>
-          <p>
-            Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-            commodi aspernatur enim, consectetur. Cumque deleniti temporibus
-            ipsam atque a dolores quisquam quisquam adipisci possimus
-            laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
-            accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
-            reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
-            deleniti rem!
-          </p>
+          <p>{event.body}</p>
+          <p>{event.eventamount}</p>
+          <img src={event.eventphoto} alt="Event" />
+          <p>{event.location}</p>
         </Modal.Body>
+        <div className="modal-btns-cont">
+          {isCreator() && (
+            <>
+              <Link to={`/add-event-participant/${event.id}`}>
+                <button className="modal-btns">Add User</button>
+              </Link>
+              <button className="modal-btns" onClick={deleteUserEvent}>
+                <FaTrash />
+              </button>
+              <Link to={`/edit/${event.id}`}>
+                <button className="modal-btns">
+                  <FaEdit />
+                </button>
+              </Link>
+            </>
+          )}
+        </div>
       </Modal>
     </>
   )

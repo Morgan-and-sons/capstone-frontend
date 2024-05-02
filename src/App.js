@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react"
 import "./App.css"
-import mockEventParticipants from "./mockEventParticipants"
-import mockEvents from "./mockEvents"
-import mockUsers from "./mockUsers"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import NotFound from "./pages/NotFound"
@@ -10,26 +7,30 @@ import Home from "./pages/Home"
 import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn"
 import Dashboard from "./pages/Dashboard"
+import New from "./pages/New"
+import Edit from "./pages/Edit"
+import AddEventParticipant from "./pages/AddEventParticipant"
 import { Route, Routes } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const App = () => {
-  const [events, setEvents] = useState([])
-  useEffect(() => {
-    getPermittedEvents()
-  }, [])
-  const [eventParticipants, setEventParticipants] = useState(
-    mockEventParticipants
-  )
   const [currentUser, setCurrentUser] = useState(null)
+  const [event, setEvent] = useState(null)
+  const [eventId, setEventId] = useState(null)
+  useEffect(() => {
+    getEvents()
+  }, [])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("currentUser")
+    const loggedInUser = localStorage.getItem("user")
     if (loggedInUser) {
       setCurrentUser(JSON.parse(loggedInUser))
     }
   }, [])
 
-  const signUp = async (currentUser) => {
+  const signUp = async (newUser) => {
     try {
       const signUpResponse = await fetch("http://localhost:3000/signup", {
         method: "POST",
@@ -37,7 +38,7 @@ const App = () => {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify(currentUser),
+        body: JSON.stringify(newUser),
       })
       if (!signUpResponse) {
         throw new Error(signUpResponse.errors)
@@ -99,44 +100,93 @@ const App = () => {
     }
   }
 
-  // const getEvents = async () => {
-  //   try {
-  //     const getResponse = await fetch("http://localhost:3000/events")
-  //     if (!getResponse.ok) {
-  //       throw new Error("Error on the get request for events")
-  //     }
-  //     const getResult = await getResponse.json()
-  //     setEvents(getResult)
-  //   } catch (error) {
-  //     alert("Ooops something went wrong", error.message)
-  //   }
-  // }
-
-  const getPermittedEvents = async () => {
+  const getEvents = async () => {
     try {
-      const getResponse = await fetch(
-        `http://localhost:3000/event_participants/${currentUser.id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      )
+      const getResponse = await fetch("http://localhost:3000/events")
       if (!getResponse.ok) {
         throw new Error("Error on the get request for events")
       }
       const getResult = await getResponse.json()
-      setEvents(getResult)
+      setEvent(getResult)
     } catch (error) {
       alert("Ooops something went wrong", error.message)
     }
   }
 
-  console.log(currentUser.id)
-  console.log(currentUser)
-  console.log(events)
+  const createEvent = async (event) => {
+    try {
+      const createResponse = await fetch("http://localhost:3000/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(event),
+      })
+      if (!createResponse.ok) {
+        throw new Error("Error on the post request for events")
+      }
+      await createResponse.json()
+      getEvents()
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+    navigate("/dashboard")
+  }
+
+  const updateEvent = async (id, editEvent) => {
+    try {
+      const patchResponse = await fetch(`http://localhost:3000/events/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editEvent),
+      })
+      if (!patchResponse.ok) {
+        throw new Error("Error on the patch request for events")
+      }
+      await patchResponse.json()
+      getEvents()
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+  }
+
+  const deleteEvent = async (id) => {
+    try {
+      const deleteResponse = await fetch(`http://localhost:3000/events/${id}`, {
+        method: "DELETE",
+      })
+      if (!deleteResponse.ok) {
+        throw new Error("Error on the delete request for events")
+      }
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+  }
+
+  const createEventParticipant = async (event) => {
+    try {
+      const createResponse = await fetch(
+        "http://localhost:3000/event_participants",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(event),
+        }
+      )
+      if (!createResponse.ok) {
+        throw new Error("Error on the post request for event participants")
+      }
+      await createResponse.json()
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+    navigate("/dashboard")
+  }
+
   return (
     <>
       <Header currentUser={currentUser} signOut={signOut} />
@@ -148,9 +198,33 @@ const App = () => {
           path="/dashboard"
           element={
             <Dashboard
+              deleteEvent={deleteEvent}
               currentUser={currentUser}
-              events={events}
-              eventParticipants={eventParticipants}
+              setEventId={setEventId}
+            />
+          }
+        />
+        <Route
+          path="/new"
+          element={<New createEvent={createEvent} currentUser={currentUser} />}
+        />
+        <Route
+          path="/edit/:id"
+          element={
+            <Edit
+              currentUser={currentUser}
+              updateEvent={updateEvent}
+              event={event}
+            />
+          }
+        />
+        <Route
+          path="/add-event-participant/:id"
+          element={
+            <AddEventParticipant
+              event={event}
+              createEventParticipant={createEventParticipant}
+              eventId={eventId}
             />
           }
         />
