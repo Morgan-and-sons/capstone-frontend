@@ -11,6 +11,7 @@ import New from "./pages/New"
 import Edit from "./pages/Edit"
 import AddEventParticipant from "./pages/AddEventParticipant"
 import UpdateIndividualContribution from "./pages/UpdateIndividualContribution"
+import UpdateEventGroupTotal from "./pages/UpdateEventGroupTotal"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
@@ -192,16 +193,13 @@ const App = () => {
 
   const updateIndividualContribution = async (id, updatedData) => {
     try {
-      const patchResponse = await fetch(
-        `http://localhost:3000/event_participants/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedData),
-        }
-      )
+      const patchResponse = await fetch(`http://localhost:3000/events/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      })
       if (!patchResponse.ok) {
         throw new Error("Error on the patch request for events")
       }
@@ -275,7 +273,14 @@ const App = () => {
               currentUser={currentUser}
               eventId={eventId}
               eventParticipants={eventParticipants}
+              event={event}
             />
+          }
+        />
+        <Route
+          path="/update-group-total/:id"
+          element={
+            <UpdateEventGroupTotal updateEvent={updateEvent} event={event} />
           }
         />
         <Route path="*" element={<NotFound />} />

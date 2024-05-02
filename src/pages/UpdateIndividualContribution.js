@@ -7,6 +7,7 @@ const UpdateIndividualContribution = ({
   updateIndividualContribution,
   currentUser,
   eventId,
+  event,
 }) => {
   const {
     register,
@@ -15,8 +16,13 @@ const UpdateIndividualContribution = ({
   } = useForm()
 
   const { id } = useParams()
+  const currentEvent = event.find((obj) => obj.id === eventId)
   const onSubmit = (formData) => {
-    updateIndividualContribution(id, formData)
+    let groupTotalInt = parseFloat(currentEvent.grouptotal)
+    let indivContInt = parseFloat(formData.individual_contributions)
+    groupTotalInt += indivContInt
+    currentEvent.event_participants_attributes = [formData]
+    updateIndividualContribution(eventId, currentEvent)
   }
 
   return (
