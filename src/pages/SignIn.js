@@ -14,7 +14,7 @@ const SignIn = ({ signIn }) => {
     signIn({ user: formData })
     const success = await signIn({ user: formData })
     if (success) {
-      navigate("/")
+      navigate("/dashboard")
     } else {
       alert("Invalid user")
     }

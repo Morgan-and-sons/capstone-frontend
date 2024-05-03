@@ -59,9 +59,6 @@ const DashModal = ({
           <p>{event.location}</p>
         </Modal.Body>
         <div className="modal-btns-cont">
-          <Link to={`/update-contribution/${eventParticipantId}`}>
-            <button className="modal-btns">Add Contribution</button>
-          </Link>
           <Link to={`/update-group-total/${event.id}`}>
             <button className="modal-btns">Update Group Contribution</button>
           </Link>

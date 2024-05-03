@@ -10,7 +10,7 @@ import Dashboard from "./pages/Dashboard"
 import New from "./pages/New"
 import Edit from "./pages/Edit"
 import AddEventParticipant from "./pages/AddEventParticipant"
-import UpdateIndividualContribution from "./pages/UpdateIndividualContribution"
+
 import UpdateEventGroupTotal from "./pages/UpdateEventGroupTotal"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -75,7 +75,6 @@ const App = () => {
       localStorage.setItem("token", signInResponse.headers.get("Authorization"))
       localStorage.setItem("user", JSON.stringify(payload))
       setCurrentUser(payload)
-
       return true
     } catch (error) {
       console.log("Error fetching sign-in data:", error)
@@ -191,24 +190,6 @@ const App = () => {
     navigate("/dashboard")
   }
 
-  const updateIndividualContribution = async (id, updatedData) => {
-    try {
-      const patchResponse = await fetch(`http://localhost:3000/events/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      })
-      if (!patchResponse.ok) {
-        throw new Error("Error on the patch request for events")
-      }
-      await patchResponse.json()
-    } catch (error) {
-      alert("Ooops something went wrong", error.message)
-    }
-  }
-
   const getEventParticipants = async () => {
     try {
       const getResponse = await fetch(
@@ -262,18 +243,6 @@ const App = () => {
               event={event}
               createEventParticipant={createEventParticipant}
               eventId={eventId}
-            />
-          }
-        />
-        <Route
-          path="/update-contribution/:id"
-          element={
-            <UpdateIndividualContribution
-              updateIndividualContribution={updateIndividualContribution}
-              currentUser={currentUser}
-              eventId={eventId}
-              eventParticipants={eventParticipants}
-              event={event}
             />
           }
         />
