@@ -16,11 +16,14 @@ const UpdateIndividualContribution = ({
   } = useForm()
 
   const { id } = useParams()
+  console.log(id)
   const currentEvent = event.find((obj) => obj.id === eventId)
   const onSubmit = (formData) => {
     let groupTotalInt = parseFloat(currentEvent.grouptotal)
     let indivContInt = parseFloat(formData.individual_contributions)
     groupTotalInt += indivContInt
+    // console.log(groupTotalInt)
+    // console.log(currentEvent)
     currentEvent.event_participants_attributes = [formData]
     updateIndividualContribution(eventId, currentEvent)
   }
