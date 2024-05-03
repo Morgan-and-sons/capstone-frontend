@@ -10,6 +10,8 @@ import Dashboard from "./pages/Dashboard"
 import New from "./pages/New"
 import Edit from "./pages/Edit"
 import AddEventParticipant from "./pages/AddEventParticipant"
+
+import UpdateEventGroupTotal from "./pages/UpdateEventGroupTotal"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
@@ -17,8 +19,10 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
   const [event, setEvent] = useState(null)
   const [eventId, setEventId] = useState(null)
+  const [eventParticipants, setEventParticipants] = useState(null)
   useEffect(() => {
     getEvents()
+    getEventParticipants()
   }, [])
 
   const navigate = useNavigate()
@@ -71,7 +75,6 @@ const App = () => {
       localStorage.setItem("token", signInResponse.headers.get("Authorization"))
       localStorage.setItem("user", JSON.stringify(payload))
       setCurrentUser(payload)
-
       return true
     } catch (error) {
       console.log("Error fetching sign-in data:", error)
@@ -187,6 +190,21 @@ const App = () => {
     navigate("/dashboard")
   }
 
+  const getEventParticipants = async () => {
+    try {
+      const getResponse = await fetch(
+        "http://localhost:3000/event_participants"
+      )
+      if (!getResponse.ok) {
+        throw new Error("Error on the get request for events")
+      }
+      const getResult = await getResponse.json()
+      setEventParticipants(getResult)
+    } catch (error) {
+      alert("Ooops something went wrong", error.message)
+    }
+  }
+
   return (
     <>
       <Header currentUser={currentUser} signOut={signOut} />
@@ -226,6 +244,12 @@ const App = () => {
               createEventParticipant={createEventParticipant}
               eventId={eventId}
             />
+          }
+        />
+        <Route
+          path="/update-group-total/:id"
+          element={
+            <UpdateEventGroupTotal updateEvent={updateEvent} event={event} />
           }
         />
         <Route path="*" element={<NotFound />} />

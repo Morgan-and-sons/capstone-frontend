@@ -7,7 +7,6 @@ import {
   Offcanvas,
   OffcanvasHeader,
   OffcanvasBody,
-  setEventId,
 } from "reactstrap"
 import DashModal from "../components/DashModal"
 import { Link } from "react-router-dom"

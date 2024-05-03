@@ -162,10 +162,10 @@ const New = ({ createEvent, currentUser }) => {
                   }}
                   id="creator"
                   name="creator"
-                  placeholder={currentUser.username}
+                  placeholder={currentUser?.username}
                   type="text"
                   className="form-control"
-                  value={currentUser.id}
+                  value={currentUser?.id}
                   readOnly
                   {...register("creator", { required: true })}
                 />

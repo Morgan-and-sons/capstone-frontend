@@ -12,9 +12,11 @@ const Header = ({ signOut, currentUser }) => {
             <img src={bankLogo} alt="bank buddy logo" className="bank-logo" />
           </NavLink>
           <div className="nav-links">
-            <NavLink to="/dashboard" className="nav-link">
-              Dashboard
-            </NavLink>
+            {currentUser && (
+              <NavLink to="/dashboard" className="nav-link">
+                Dashboard
+              </NavLink>
+            )}
           </div>
         </div>
         <div className="right-side-header">
@@ -24,9 +26,11 @@ const Header = ({ signOut, currentUser }) => {
             </Link>
           </div>
           <div className="nav-links">
-            <NavLink to="/signin" className="nav-link nav-links">
-              Sign In
-            </NavLink>
+            {!currentUser && (
+              <NavLink to="/signin" className="nav-link nav-links">
+                Sign In
+              </NavLink>
+            )}
           </div>
           <div className="nav-links">
             <NavLink to="/FAQ" className="nav-link nav-links">
@@ -34,36 +38,40 @@ const Header = ({ signOut, currentUser }) => {
             </NavLink>
           </div>
           <div className="nav-links">
-            <Button
-              tag={Link}
-              to="/signup"
-              className="nav-link nav-links"
-              style={{
-                borderRadius: "0.375rem",
-                padding: "10px 20px",
-                backgroundColor: "#8A58FE",
-                color: "white",
-              }}
-            >
-              Sign Up
-            </Button>
+            {!currentUser && (
+              <Button
+                tag={Link}
+                to="/signup"
+                className="nav-link nav-links"
+                style={{
+                  borderRadius: "0.375rem",
+                  padding: "10px 20px",
+                  backgroundColor: "#8A58FE",
+                  color: "white",
+                }}
+              >
+                Sign Up
+              </Button>
+            )}
           </div>
           <div className="nav-links">
-            <Button
-              tag={Link}
-              to="/"
-              className="nav-link nav-links"
-              style={{
-                borderRadius: "0.375rem",
-                padding: "10px 20px",
-                backgroundColor: "#8A58FE",
-                color: "white",
-                marginRight: "2rem",
-              }}
-              onClick={signOut}
-            >
-              Sign Out
-            </Button>
+            {currentUser && (
+              <Button
+                tag={Link}
+                to="/"
+                className="nav-link nav-links"
+                style={{
+                  borderRadius: "0.375rem",
+                  padding: "10px 20px",
+                  backgroundColor: "#8A58FE",
+                  color: "white",
+                  marginRight: "2rem",
+                }}
+                onClick={signOut}
+              >
+                Sign Out
+              </Button>
+            )}
           </div>
         </div>
       </div>

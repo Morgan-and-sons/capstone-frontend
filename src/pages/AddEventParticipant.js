@@ -13,6 +13,7 @@ const AddEventParticipant = ({ eventId, createEventParticipant }) => {
   const onSubmit = (newEventParticipant) => {
     createEventParticipant(newEventParticipant)
   }
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className="form-size">
       <h3 className="title-header center-content">Add Event Participant</h3>
