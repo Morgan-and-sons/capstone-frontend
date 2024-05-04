@@ -275,6 +275,13 @@
   left: 1vw;
   top: 14vh;
 }
+.pic-div-inside {
+  height: 15vh;
+  width: 15vh;
+  justify-content: center;
+  border-radius: 999px;
+  overflow: clip;
+}
 
 /* Modal */
 

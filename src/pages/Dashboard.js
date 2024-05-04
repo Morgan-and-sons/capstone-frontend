@@ -125,19 +125,59 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
         />
         <Offcanvas isOpen={showOffcanvas} toggle={handleToggle}>
           <div className="slide-close-btn-cont">
-            <Button className="slide-close-btn" onClick={handleToggle}>
-              X
-            </Button>
+            <svg
+              onClick={handleToggle}
+              style={{ cursor: "pointer" }}
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+            >
+              <defs>
+                <linearGradient id="textGradient" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#8c52ff" />
+                  <stop offset="100%" stop-color="#5ce1e6" />
+                </linearGradient>
+              </defs>
+              <text
+                x="0"
+                y="20"
+                fill="url(#textGradient)"
+                font-size="35"
+                font-weight="800"
+                fontFamily="Arial Rounded MT Bold"
+                text-anchor="start"
+              >
+                x
+              </text>
+            </svg>
           </div>
-          <OffcanvasHeader>
+          <div className="d-flex" style={{ justifyContent: "center" }}>
+            <div className="d-flex pic-div-inside">
+              <img
+                src={currentUser.profile_photo_url}
+                alt="your profile picture"
+                style={{
+                  height: "15vh",
+                }}
+                onClick={handleToggle}
+              />
+            </div>
+          </div>
+          <OffcanvasHeader
+            className="d-flex"
+            style={{ justifyContent: "center" }}
+          >
             {currentUser.firstname} {currentUser.lastname}
           </OffcanvasHeader>
           <OffcanvasBody>
-            <p>{`Username: ${currentUser.username}`}</p>
-            <p>{`Email: ${currentUser.email}`}</p>
-            <Link to="/new">
-              <Button className="btn-class">Add Event</Button>
-            </Link>
+            <p>
+              <span style={{ fontWeight: 700 }}>Username: </span>
+              {currentUser.username}
+            </p>
+            <p>
+              <span style={{ fontWeight: 700 }}>Email: </span>
+              {currentUser.email}
+            </p>
           </OffcanvasBody>
         </Offcanvas>
       </div>
