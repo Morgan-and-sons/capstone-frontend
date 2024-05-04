@@ -201,30 +201,40 @@
 }
 
 /* dashboard */
-.dashboard-cont {
+.main-dash-cont {
+  display: flex;
+  justify-content: center;
+  padding: 5vh;
+}
+.middle-dash-cont {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
+  width: 53vw;
+}
+.wrap-cards {
+  display: flex;
+  flex-wrap: wrap;
 }
 /* dashboard Overall stats */
-.overall-progress-cont,
 .personal-cont,
 .group-cont {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   flex-direction: column;
 }
 .progress-bars {
   width: 50vw;
-  border: 1px black solid;
+  border: 1px #d2d2d2 solid;
   padding: 2vh;
   border-radius: 10px;
 }
-.progress-bar {
-  background-color: #8a58fe !important;
-}
 /* dashboard Card */
+.card-body {
+  width: 24.5vw !important;
+  height: 25vh !important;
+  flex: 0 0 auto !important;
+}
 .dashboard-card-title {
   color: black;
 }
@@ -243,8 +253,30 @@
 .offcanvas-title {
   font-size: 4vh !important;
 }
+.add-event-card {
+  background-color: #e9ecef !important;
+  opacity: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.08);
+  &:hover {
+    background-image: linear-gradient(to right, #8c52ff, #5ce1e6);
+    opacity: 50%;
+  }
+}
 
-/* Modal Buttons */
+/* proflie */
+.pic-div {
+  height: 8vh;
+  width: 8vh;
+  justify-content: center;
+  border-radius: 999px;
+  overflow: clip;
+  position: absolute;
+  left: 1vw;
+  top: 14vh;
+}
+
+/* Modal */
 
 .modal-btns {
   background-color: transparent !important;
@@ -256,4 +288,15 @@
 .modal-btns-cont {
   display: flex;
   justify-content: center;
+}
+
+.see-more {
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.5vh;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 50%;
+  }
 }

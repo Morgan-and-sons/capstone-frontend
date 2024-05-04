@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal"
 import { Progress } from "reactstrap"
 import { FaTrash, FaEdit } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import { FaChevronRight } from "react-icons/fa"
 
 const DashModal = ({
   event,
@@ -34,9 +35,16 @@ const DashModal = ({
 
   return (
     <>
-      <Button variant="primary" onClick={() => setShow(true)}>
-        Custom Width Modal
-      </Button>
+      <span
+        className="see-more"
+        style={{
+          color: event.color,
+        }}
+        onClick={() => setShow(true)}
+      >
+        See More
+        <FaChevronRight />
+      </span>
 
       <Modal
         show={show}
