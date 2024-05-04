@@ -1,8 +1,8 @@
 import React from "react"
 import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
+import { BsArrowUpCircleFill } from "react-icons/bs"
 import bank from "../assets/bank.png"
-import home1 from "../assets/home1.jpg"
 import home2 from "../assets/home2.jpg"
 import home3 from "../assets/home3.jpg"
 import num1 from "../assets/num1.png"
@@ -64,6 +64,8 @@ const Home = () => {
           <Card
             style={{
               width: "18rem",
+              border: "none",
+              backgroundColor: "transparent",
             }}
           >
             <img alt="number 1" src={num1} />
@@ -80,6 +82,8 @@ const Home = () => {
           <Card
             style={{
               width: "18rem",
+              border: "none",
+              backgroundColor: "transparent",
             }}
           >
             <img alt="number 2 " src={num2} />
@@ -96,6 +100,8 @@ const Home = () => {
           <Card
             style={{
               width: "18rem",
+              border: "none",
+              backgroundColor: "transparent",
             }}
           >
             <img alt="number 3" src={num3} />
@@ -112,6 +118,8 @@ const Home = () => {
           <Card
             style={{
               width: "18rem",
+              border: "none",
+              backgroundColor: "transparent",
             }}
           >
             <img alt="number 4" src={num4} />
@@ -216,7 +224,7 @@ const Home = () => {
           </Card>
         </div>
       </div>
-      <div className="FAQ-cont">
+      <div id="faq" className="FAQ-cont">
         <h2 className="how-to-title">Frequently Asked Questions</h2>
         <div>
           <Accordion
@@ -299,6 +307,11 @@ const Home = () => {
             </AccordionItem>
           </Accordion>
         </div>
+        <a href="/#top" className="back-to-top">
+          <BsArrowUpCircleFill
+            style={{ color: "black", fontSize: "4rem", marginTop: "1rem" }}
+          />
+        </a>
       </div>
     </div>
   )
