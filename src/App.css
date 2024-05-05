@@ -230,9 +230,6 @@ button:hover .button-text {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-top: 2rem;
-  padding: 2rem;
 }
 
 .home1 {
@@ -297,11 +294,15 @@ button:hover .button-text {
 .steps-title {
   font-size: 1.2rem;
   font-weight: 800;
-  margin-bottom: 1rem;
   text-align: center;
 }
 
 /* Carausel */
+
+.carousel-cont {
+  background: whitesmoke;
+}
+
 .carousel-text {
   font-size: 3rem;
   font-weight: 800;

@@ -226,7 +226,9 @@ const Home = () => {
       </div>
       <HomeCarousel />
       <div id="faq" className="FAQ-cont">
-        <h2 className="how-to-title">Frequently Asked Questions</h2>
+        <h2 style={{ color: "white" }} className="how-to-title">
+          Frequently Asked Questions
+        </h2>
         <div>
           <Accordion
             flush
@@ -310,7 +312,7 @@ const Home = () => {
         </div>
         <a href="/#top" className="back-to-top">
           <BsArrowUpCircleFill
-            style={{ color: "black", fontSize: "4rem", marginTop: "1rem" }}
+            style={{ color: "white", fontSize: "4rem", marginTop: "4rem" }}
           />
         </a>
       </div>

@@ -81,7 +81,7 @@ function HomeCarousel(args) {
   })
 
   return (
-    <div>
+    <div className="carousel-cont">
       <h2 className="how-to-title">Endless Opportunities</h2>
       <Carousel
         activeIndex={activeIndex}
