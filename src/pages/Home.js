@@ -1,4 +1,5 @@
 import React from "react"
+import HomeCarousel from "../components/HomeCarousel"
 import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { BsArrowUpCircleFill } from "react-icons/bs"
@@ -43,8 +44,7 @@ const Home = () => {
               Bank Buddy
             </CardTitle>
             <CardText className="app-moto">
-              Start saving money with friends and family today with{" "}
-              <u>Bank Buddy</u>
+              Start saving money with friends and family today with Bank Buddy
             </CardText>
             <NavLink to="/signup" className="learn-more">
               <button className="learn-more">
@@ -224,6 +224,7 @@ const Home = () => {
           </Card>
         </div>
       </div>
+      <HomeCarousel />
       <div id="faq" className="FAQ-cont">
         <h2 className="how-to-title">Frequently Asked Questions</h2>
         <div>

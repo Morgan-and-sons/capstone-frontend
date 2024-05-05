@@ -301,6 +301,15 @@ button:hover .button-text {
   text-align: center;
 }
 
+/* Carausel */
+.carousel-text {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff !important;
+  margin-bottom: 2rem;
+  text-shadow: #000000;
+}
+
 /* sign in */
 
 .edit-cont {
