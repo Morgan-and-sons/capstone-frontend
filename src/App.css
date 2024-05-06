@@ -1,3 +1,48 @@
+/* About Us  */
+.about-us-cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: whitesmoke;
+  padding-top: 2.5%;
+}
+.about-us-card {
+  width: 25rem;
+  flex: 1;
+  margin: 10px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f0f0f0;
+  padding-top: 10%;
+}
+.about-us-card-subtitle {
+  text-align: center;
+  font-size: 1rem;
+}
+.about-us-card-title {
+  font-size: 2rem !important;
+  color: #000000;
+  text-align: center;
+}
+
+.about-us-cardtext ul,
+.about-us-cardtext li {
+  color: #000000;
+  font-size: 1rem;
+}
+.about-us-card img {
+  display: block;
+  margin: auto;
+  width: 50%;
+  height: 12rem;
+}
+.github-logo {
+  color: #000000;
+  font-size: 3rem;
+}
+.linkedin-logo {
+  font-size: 3rem;
+}
 /* Not Found */
 .not-found-cont {
   display: flex;

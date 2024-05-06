@@ -4,13 +4,13 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
+import AboutUs from "./pages/AboutUs"
 import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn"
 import Dashboard from "./pages/Dashboard"
 import New from "./pages/New"
 import Edit from "./pages/Edit"
 import AddEventParticipant from "./pages/AddEventParticipant"
-
 import UpdateEventGroupTotal from "./pages/UpdateEventGroupTotal"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -210,6 +210,7 @@ const App = () => {
       <Header id="top" currentUser={currentUser} signOut={signOut} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/signup" element={<SignUp signUp={signUp} />} />
         <Route path="/signin" element={<SignIn signIn={signIn} />} />
         <Route
