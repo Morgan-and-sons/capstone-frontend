@@ -2,7 +2,6 @@ import React from "react"
 import bankLogo from "../assets/bank-logo-2.png"
 import { Nav, Button } from "reactstrap"
 import { Link, NavLink } from "react-router-dom"
-
 const Header = ({ signOut, currentUser }) => {
   return (
     <Nav className="nav-cont" navbar>
@@ -33,8 +32,13 @@ const Header = ({ signOut, currentUser }) => {
             )}
           </div>
           <div className="nav-links">
-            <NavLink to="/FAQ" className="nav-link nav-links">
+            <a href="/#faq" className="nav-link nav-links">
               FAQ
+            </a>
+          </div>
+          <div className="nav-links">
+            <NavLink to="/aboutus" className="nav-link nav-links">
+              About Us
             </NavLink>
           </div>
           <div className="nav-links">
