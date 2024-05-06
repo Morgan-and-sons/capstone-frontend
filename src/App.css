@@ -237,6 +237,8 @@ button:hover .button-text {
   align-items: center;
   width: 60vh;
   height: 60vh;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .features-cont {

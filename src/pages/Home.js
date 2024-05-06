@@ -3,13 +3,14 @@ import HomeCarousel from "../components/HomeCarousel"
 import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { BsArrowUpCircleFill } from "react-icons/bs"
-import bank from "../assets/bank.png"
+// import bank from "../assets/bank.png"
+import homehero from "../assets/homehero.png"
 import home2 from "../assets/home2.jpg"
 import home3 from "../assets/home3.jpg"
-import num1 from "../assets/num1.png"
-import num2 from "../assets/num2.png"
-import num3 from "../assets/num3.png"
-import num4 from "../assets/num4.png"
+import step1 from "../assets/step1.png"
+import step2 from "../assets/step2.png"
+import step3 from "../assets/step3.png"
+import step4 from "../assets/step4.png"
 import {
   Accordion,
   AccordionItem,
@@ -56,7 +57,7 @@ const Home = () => {
             </NavLink>
           </CardBody>
         </Card>
-        <img src={bank} alt="home1" className="home1" />
+        <img src={homehero} alt="home1" className="home1" />
       </div>
       <div className="how-to-cont">
         <h2 className="how-to-title">How to Start Saving With Bank Buddy</h2>
@@ -68,7 +69,7 @@ const Home = () => {
               backgroundColor: "transparent",
             }}
           >
-            <img alt="number 1" src={num1} />
+            <img alt="number 1" src={step1} />
             <CardBody>
               <CardTitle className="steps-title" tag="h5">
                 <u>Create an Account</u>
@@ -86,7 +87,7 @@ const Home = () => {
               backgroundColor: "transparent",
             }}
           >
-            <img alt="number 2 " src={num2} />
+            <img alt="number 2 " src={step2} />
             <CardBody>
               <CardTitle className="steps-title" tag="h5">
                 <u>Create an Event</u>
@@ -104,7 +105,7 @@ const Home = () => {
               backgroundColor: "transparent",
             }}
           >
-            <img alt="number 3" src={num3} />
+            <img alt="number 3" src={step3} />
             <CardBody>
               <CardTitle className="steps-title" tag="h5">
                 <u>Invite Friends and Family</u>
@@ -122,7 +123,7 @@ const Home = () => {
               backgroundColor: "transparent",
             }}
           >
-            <img alt="number 4" src={num4} />
+            <img alt="number 4" src={step4} />
             <CardBody>
               <CardTitle className="steps-title" tag="h5">
                 <u>Meet up and Enjoy!</u>
@@ -163,9 +164,9 @@ const Home = () => {
             <CardText
               style={{ fontSize: "1.5rem", fontFamily: "PT Serif serif" }}
             >
-              Set a goal and start saving with friends and family. Finally save
-              for what you always plan to do! Plan a trip, buy a gift, or save
-              up for a rainy day.
+              Set a goal and start saving with friends and family. Finally
+              actually do the things you always talk about doing with friends
+              and family! Plan a trip, buy a gift, or save up for a rainy day.
             </CardText>
             <Link to="/signup" className="learn-more">
               <button className="learn-more">

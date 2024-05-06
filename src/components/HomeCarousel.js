@@ -10,6 +10,7 @@ import hawaii from "../assets/hawaii.jpg"
 import concert from "../assets/concert.jpg"
 import baseball from "../assets/baseball.jpg"
 import cabin from "../assets/cabin.jpg"
+import wine from "../assets/wine.jpg"
 
 const items = [
   {
@@ -35,6 +36,12 @@ const items = [
     altText: "Cabin Trip for Six",
     caption: "Average total cost per person: $500",
     key: 4,
+  },
+  {
+    src: wine,
+    altText: "Wine Tasting for Four",
+    caption: "Average total cost per person: $60",
+    key: 5,
   },
 ]
 
