@@ -3,7 +3,6 @@ import {
   Progress,
   Card,
   CardTitle,
-  Button,
   Offcanvas,
   OffcanvasHeader,
   OffcanvasBody,
@@ -13,7 +12,13 @@ import { Link } from "react-router-dom"
 import { FaPlus } from "react-icons/fa"
 import { Tooltip } from "react-tooltip"
 
-const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
+const Dashboard = ({
+  currentUser,
+  deleteEvent,
+  setActivityData,
+  createEventParticipant,
+  updateEvent,
+}) => {
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const [userEvents, setUserEvents] = useState(null)
   const [eventsWithColor, setEventsWithColor] = useState(null)
@@ -26,10 +31,6 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
   useEffect(() => {
     sortEvents()
   }, [userEvents])
-
-  const handleToggle = () => {
-    setShowOffcanvas(!showOffcanvas)
-  }
 
   const getPermittedEvents = async () => {
     try {
@@ -71,15 +72,14 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
       (event) => event.creator !== currentUser.id
     )
     let allEvents = myEvents?.concat(invitedEvents)
-    assignColors(allEvents)
-  }
 
-  const assignColors = (sortedEvents) => {
-    const assigningColor = sortedEvents?.map((event, index) => ({
-      ...event,
-      color: barColors[index % barColors.length],
-    }))
-    setEventsWithColor(assigningColor)
+    const addColorProperty = allEvents?.map((event, index) => {
+      return {
+        ...event,
+        color: barColors[index % barColors.length],
+      }
+    })
+    setEventsWithColor(addColorProperty)
   }
 
   const isItMine = (events) => {
@@ -97,7 +97,7 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
     return `$${formattedAmount}`
   }
 
-  console.log(currentUser)
+  console.log(eventsWithColor)
 
   return (
     <>
@@ -112,7 +112,7 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
               height: "8vh",
               cursor: "pointer",
             }}
-            onClick={handleToggle}
+            onClick={() => setShowOffcanvas(!showOffcanvas)}
           />
         </div>
         <Tooltip
@@ -123,13 +123,16 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
             fontWeight: 600,
           }}
         />
-        <Offcanvas isOpen={showOffcanvas} toggle={handleToggle}>
+        <Offcanvas
+          isOpen={showOffcanvas}
+          toggle={() => setShowOffcanvas(!showOffcanvas)}
+        >
           <div className="slide-close-btn-cont">
             <svg
-              onClick={handleToggle}
+              onClick={() => setShowOffcanvas(!showOffcanvas)}
               style={{ cursor: "pointer" }}
-              width="30"
-              height="30"
+              width="23"
+              height="23"
               viewBox="0 0 30 30"
             >
               <defs>
@@ -159,7 +162,7 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
                 style={{
                   height: "15vh",
                 }}
-                onClick={handleToggle}
+                onClick={() => setShowOffcanvas(!showOffcanvas)}
               />
             </div>
           </div>
@@ -265,12 +268,12 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
                       <DashModal
                         event={event}
                         currentUser={currentUser}
-                        overallBarVisual={
-                          (event.grouptotal / event.eventamount) * 100
-                        }
                         deleteEvent={deleteEvent}
                         getPermittedEvents={getPermittedEvents}
-                        setEventId={setEventId}
+                        convertUSD={convertUSD}
+                        setActivityData={setActivityData}
+                        createEventParticipant={createEventParticipant}
+                        updateEvent={updateEvent}
                       />
                     </div>
                   </Card>
@@ -341,12 +344,12 @@ const Dashboard = ({ currentUser, deleteEvent, setEventId }) => {
                       <DashModal
                         event={event}
                         currentUser={currentUser}
-                        overallBarVisual={
-                          (event.grouptotal / event.eventamount) * 100
-                        }
                         deleteEvent={deleteEvent}
                         getPermittedEvents={getPermittedEvents}
-                        setEventId={setEventId}
+                        convertUSD={convertUSD}
+                        setActivityData={setActivityData}
+                        createEventParticipant={createEventParticipant}
+                        updateEvent={updateEvent}
                       />
                     </div>
                   </Card>

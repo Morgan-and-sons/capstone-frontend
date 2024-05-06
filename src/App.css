@@ -232,7 +232,7 @@
 /* dashboard Card */
 .card-body {
   width: 24.5vw !important;
-  height: 25vh !important;
+  height: 30vh !important;
   flex: 0 0 auto !important;
 }
 .dashboard-card-title {
@@ -242,10 +242,6 @@
   display: flex;
   justify-content: end;
   padding: 2vh;
-}
-.slide-close-btn {
-  width: 4vw;
-  background-color: #8a58fe !important;
 }
 .btn-class {
   background-color: #8a58fe !important;
@@ -290,15 +286,29 @@
   border: none;
   padding: 1rem;
   font-size: 1.5rem;
+  position: absolute;
 }
 
-.modal-btns-cont {
-  display: flex;
+.modal-btn-cont {
   justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.mini-btn-cont {
+  width: fit-content;
+  border-left: 1.5px solid #dee2e6 !important;
+  border-top: 1.5px solid #dee2e6 !important;
+}
+
+.modal-tool-tips {
+  border-right: 1.5px solid #dee2e6 !important;
 }
 
 .see-more {
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 0.5vh;
@@ -306,4 +316,52 @@
   &:hover {
     opacity: 50%;
   }
+}
+
+.modal-img {
+  width: 100%;
+}
+
+.modal-forms {
+  position: absolute;
+  top: 6vh;
+  left: -4.5vw;
+}
+
+.hide {
+  display: none;
+}
+
+.tiny-form {
+  background-color: #dee2e6;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-bottom: 2vh;
+  padding-top: 1px;
+  border-radius: 1vh;
+}
+
+.center-tiny-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+}
+
+.tiny-form-btns {
+  border: 1px solid #7f7f7f;
+  background-color: transparent;
+  border-radius: 1vh;
+  color: #7f7f7f;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #7f7f7f;
+    color: #dee2e6;
+  }
+}
+
+.modal-header .btn-close {
+  position: absolute;
+  right: 2vw;
+  top: 2vh;
 }

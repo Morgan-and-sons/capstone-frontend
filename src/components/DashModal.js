@@ -1,27 +1,43 @@
 import React, { useState, useEffect } from "react"
-import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import { Progress } from "reactstrap"
-import { FaTrash, FaEdit } from "react-icons/fa"
+import DeleteIcon from "@mui/icons-material/Delete"
 import { Link } from "react-router-dom"
 import { FaChevronRight } from "react-icons/fa"
+import ActivityLog from "./ActivityLog"
+import Tooltip from "@mui/material/Tooltip"
+import IconButton from "@mui/material/IconButton"
+import EditIcon from "@mui/icons-material/Edit"
+import AddEventParticipant from "./AddEventParticipant"
+import UpdateEventGroupTotal from "./UpdateEventGroupTotal"
+import PersonAddIcon from "@mui/icons-material/PersonAdd"
+import SavingsIcon from "@mui/icons-material/Savings"
+import SuccessBanner from "./SuccessBanner"
 
 const DashModal = ({
   event,
-  overallBarVisual,
   currentUser,
   deleteEvent,
   getPermittedEvents,
-  setEventId,
+  convertUSD,
+  setActivityData,
+  createEventParticipant,
+  updateEvent,
+  setEvent,
 }) => {
-  const eventParticipantId = event.event_participants.find(
-    (obj) => obj.user_id === currentUser.id
-  ).id
-
   const [show, setShow] = useState(false)
+  const [addPartForm, setAddPartForm] = useState(false)
+  const [groupTotalForm, setGroupTotalForm] = useState(false)
+  const [email, setEmail] = useState(null)
+  const [submissionStatus, setSubmissionStatus] = useState(null)
+
   useEffect(() => {
-    setEventId(event.id)
-  }, [])
+    setAddPartForm(false)
+    setGroupTotalForm(false)
+    if (!show) {
+      setSubmissionStatus(null)
+    }
+  }, [show])
 
   const isCreator = () => {
     return currentUser && event.creator === currentUser.id
@@ -31,6 +47,14 @@ const DashModal = ({
     deleteEvent(event.id)
     getPermittedEvents()
     setShow(false)
+  }
+
+  const handleAddPartForm = () => {
+    setAddPartForm(!addPartForm)
+  }
+
+  const handleGroupTotalForm = () => {
+    setGroupTotalForm(!groupTotalForm)
   }
 
   return (
@@ -45,46 +69,130 @@ const DashModal = ({
         See More
         <FaChevronRight />
       </span>
-
       <Modal
         show={show}
         onHide={() => setShow(false)}
         dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
-            {event.title}
-          </Modal.Title>
+        {submissionStatus === "success" && (
+          <SuccessBanner
+            text={`${email} was succesfully added to this event`}
+          />
+        )}
+        <Modal.Header style={{ position: "relative" }} closeButton>
+          <div style={{ marginBottom: "4.5vh", marginTop: "1vh" }}>
+            <Modal.Title id="example-custom-modal-styling-title">
+              {event.title}
+            </Modal.Title>
+            <p style={{ color: "#888787", fontWeight: 500 }}>
+              {event.location}
+            </p>
+            <div className="d-flex modal-btn-cont">
+              <div className="mini-btn-cont d-flex">
+                <div
+                  style={{ position: "relative" }}
+                  className="modal-tool-tips"
+                >
+                  <Tooltip placement="top" title="Update Group Total">
+                    <IconButton onClick={handleGroupTotalForm}>
+                      <SavingsIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <div className="modal-forms">
+                    <UpdateEventGroupTotal
+                      updateEvent={updateEvent}
+                      currentUser={currentUser}
+                      setActivityData={setActivityData}
+                      eventId={event.id}
+                      event={event}
+                      setEvent={setEvent}
+                      getPermittedEvents={getPermittedEvents}
+                      createEventParticipant={createEventParticipant}
+                      setGroupTotalForm={setGroupTotalForm}
+                      groupTotalForm={groupTotalForm}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{ position: "relative" }}
+                    className="modal-tool-tips"
+                  >
+                    <Tooltip placement="top" title="Add Participant">
+                      <IconButton onClick={handleAddPartForm}>
+                        <PersonAddIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <div className="modal-forms">
+                      <AddEventParticipant
+                        eventId={event.id}
+                        createEventParticipant={createEventParticipant}
+                        setAddPartForm={setAddPartForm}
+                        addPartForm={addPartForm}
+                        setEmail={setEmail}
+                        setSubmissionStatus={setSubmissionStatus}
+                      />
+                    </div>
+                  </div>
+                </div>
+                {isCreator() && (
+                  <>
+                    <Link className="modal-tool-tips" to={`/edit/${event.id}`}>
+                      <Tooltip placement="top" title="Edit">
+                        <IconButton>
+                          <EditIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </Link>
+                    <div className="modal-tool-tips">
+                      <Tooltip placement="top" title="Delete">
+                        <IconButton onClick={deleteUserEvent}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
         </Modal.Header>
-        <Progress className="my-2" value={overallBarVisual}>
-          <p>{event && event.grouptotal}</p>
-        </Progress>
-        <Modal.Body>
+        <div style={{ padding: "2vh", marginTop: "2vh" }}>
+          <p style={{ marginBottom: "1vh", fontWeight: 600 }}>
+            Event Description:
+          </p>
           <p>{event.body}</p>
-          <p>{event.eventamount}</p>
-          <img src={event.eventphoto} alt="Event" />
-          <p>{event.location}</p>
-        </Modal.Body>
-        <div className="modal-btns-cont">
-          <Link to={`/update-group-total/${event.id}`}>
-            <button className="modal-btns">Update Group Contribution</button>
-          </Link>
-          {isCreator() && (
-            <>
-              <Link to={`/add-event-participant/${event.id}`}>
-                <button className="modal-btns">Add User</button>
-              </Link>
-              <button className="modal-btns" onClick={deleteUserEvent}>
-                <FaTrash />
-              </button>
-              <Link to={`/edit/${event.id}`}>
-                <button className="modal-btns">
-                  <FaEdit />
-                </button>
-              </Link>
-            </>
-          )}
+          <div
+            style={{ fontSize: "2.25vh", fontWeight: 500 }}
+            className="text-center"
+          >{`Goal: ${convertUSD(event.eventamount)}`}</div>
+          <div className="d-flex" style={{ justifyContent: "center" }}>
+            <Progress
+              animated
+              className="my-2"
+              value={(event.grouptotal / event.eventamount) * 100}
+              style={{ width: "100%" }}
+            >
+              <p
+                style={{
+                  marginTop: "1.75vh",
+                  backgroundColor: event.color,
+                }}
+              >
+                {convertUSD(event.grouptotal)}
+              </p>
+            </Progress>
+          </div>
+          <div className="d-flex" style={{ justifyContent: "center" }}>
+            <img className="modal-img" src={event.eventphoto} alt="Event" />
+          </div>
+          <ActivityLog
+            convertUSD={convertUSD}
+            eventId={event.id}
+            event={event}
+          />
         </div>
       </Modal>
     </>
