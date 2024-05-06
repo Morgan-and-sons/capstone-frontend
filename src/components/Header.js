@@ -20,7 +20,7 @@ const Header = ({ signOut, currentUser }) => {
         </div>
         <div className="right-side-header">
           <div className="nav-links">
-            <Link to="/" className="nav-link nav-links">
+            <Link to="/" className="nav-link">
               Home
             </Link>
           </div>
@@ -63,7 +63,7 @@ const Header = ({ signOut, currentUser }) => {
               <Button
                 tag={Link}
                 to="/"
-                className="nav-link nav-links"
+                className="nav-link"
                 style={{
                   borderRadius: "0.375rem",
                   padding: "10px 20px",

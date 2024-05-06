@@ -67,7 +67,6 @@
 .right-side-header {
   display: flex;
   justify-content: end;
-  gap: 1vw;
 }
 .nav-cont {
   flex-direction: row;
@@ -89,14 +88,14 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
-  font-family: "PT Serif", serif;
-  margin-right: 1rem;
+  margin-right: 1vw;
 }
 
 .nav-link {
   font-size: 1.5rem;
   color: white !important;
+  text-align: center;
+  margin-right: 0;
 }
 
 .nav-link:hover {
@@ -449,7 +448,7 @@ button:hover .button-text {
   border-radius: 10px;
 }
 /* dashboard Card */
-.card-body {
+.dash-card-body {
   width: 24.5vw !important;
   height: 30vh !important;
   flex: 0 0 auto !important;
@@ -573,6 +572,7 @@ button:hover .button-text {
   border-radius: 1vh;
   color: #7f7f7f;
   transition: all 0.3s ease;
+  padding: 5px;
   &:hover {
     background-color: #7f7f7f;
     color: #dee2e6;
@@ -581,7 +581,7 @@ button:hover .button-text {
 
 .modal-header .btn-close {
   position: absolute;
-  right: 2vw;
+  right: 1.25vw;
   top: 2vh;
 }
 

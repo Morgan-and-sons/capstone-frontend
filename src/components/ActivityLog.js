@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Collapse, Card } from "reactstrap"
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
+import ArrowRightIcon from "@mui/icons-material/ArrowRight"
 
 const ActivityLog = ({ eventId, event, convertUSD }) => {
   const [eventData, setEventData] = useState([])
@@ -52,7 +53,7 @@ const ActivityLog = ({ eventId, event, convertUSD }) => {
         onClick={toggle}
       >
         View Contribution Activity
-        {collapse ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+        {collapse ? <ArrowDropDownIcon /> : <ArrowRightIcon />}
       </button>
       <Collapse isOpen={collapse}>
         <div className="mt-3">
@@ -66,7 +67,13 @@ const ActivityLog = ({ eventId, event, convertUSD }) => {
                     <strong>{contribution.firstname}</strong> contributed{" "}
                     <strong>{convertUSD(contribution.groupTotal)}</strong>
                   </p>
-                  <p style={{ fontSize: "1.55vh", marginTop: "-2vh" }}>
+                  <p
+                    style={{
+                      fontSize: "1.55vh",
+                      marginTop: "-2vh",
+                      cursor: "pointer",
+                    }}
+                  >
                     {formatDate(contribution.time)}
                   </p>
                 </Card>
@@ -76,6 +83,15 @@ const ActivityLog = ({ eventId, event, convertUSD }) => {
             <p>No contribution data available for this event.</p>
           )}
         </div>
+        <p onClick={toggle} style={{ marginBottom: "0" }}>
+          <span style={{ cursor: "pointer" }}>
+            <span style={{ textDecoration: "underline" }}>
+              {" "}
+              Hide Contribution Activity
+            </span>
+            <ArrowDropUpIcon />
+          </span>
+        </p>
       </Collapse>
     </div>
   )
