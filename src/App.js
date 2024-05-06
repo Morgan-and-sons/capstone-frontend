@@ -18,16 +18,12 @@ import { useNavigate } from "react-router-dom"
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
   const [event, setEvent] = useState(null)
-  const [eventId, setEventId] = useState(null)
-  const [eventParticipants, setEventParticipants] = useState(null)
-  useEffect(() => {
-    getEvents()
-    getEventParticipants()
-  }, [])
-
+  const [activityData, setActivityData] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
+    getEvents()
+    getEventParticipants()
     const loggedInUser = localStorage.getItem("user")
     if (loggedInUser) {
       setCurrentUser(JSON.parse(loggedInUser))
@@ -199,7 +195,6 @@ const App = () => {
         throw new Error("Error on the get request for events")
       }
       const getResult = await getResponse.json()
-      setEventParticipants(getResult)
     } catch (error) {
       alert("Ooops something went wrong", error.message)
     }
@@ -219,7 +214,11 @@ const App = () => {
             <Dashboard
               deleteEvent={deleteEvent}
               currentUser={currentUser}
-              setEventId={setEventId}
+              activityData={activityData}
+              updateEvent={updateEvent}
+              setActivityData={setActivityData}
+              setEvent={setEvent}
+              createEventParticipant={createEventParticipant}
             />
           }
         />
@@ -235,22 +234,6 @@ const App = () => {
               updateEvent={updateEvent}
               event={event}
             />
-          }
-        />
-        <Route
-          path="/add-event-participant/:id"
-          element={
-            <AddEventParticipant
-              event={event}
-              createEventParticipant={createEventParticipant}
-              eventId={eventId}
-            />
-          }
-        />
-        <Route
-          path="/update-group-total/:id"
-          element={
-            <UpdateEventGroupTotal updateEvent={updateEvent} event={event} />
           }
         />
         <Route path="*" element={<NotFound />} />

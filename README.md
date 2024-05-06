@@ -17,7 +17,10 @@ Have you ever been out with friends and you all verbally agree to plans that ine
 
 ## Sources
 
-- Images: [Unsplash](https://unsplash.com)
-- Logo: [Canva](https://www.canva.com)
 - Modal: [React Bootstrap](https://react-bootstrap.netlify.app/docs/components/modal/)
 - Data Visualization: [Reactstrap](https://reactstrap.github.io/?path=/docs/components-progress--progress)
+- Contribution Activity Dropdown: [Reactstrap](https://reactstrap.github.io/?path=/docs/components-collapse--collapse)
+- Profile Slide Out: [Reactstrap](https://reactstrap.github.io/?path=/docs/components-offcanvas--offcanvas)
+- Images: [Unsplash](https://unsplash.com)
+- Logo: [Canva](https://www.canva.com)
+- Tool Tips and Icons: [Material UI](https://mui.com/material-ui/react-tooltip/)

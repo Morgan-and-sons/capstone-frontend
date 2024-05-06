@@ -420,30 +420,40 @@ button:hover .button-text {
 }
 
 /* dashboard */
-.dashboard-cont {
+.main-dash-cont {
+  display: flex;
+  justify-content: center;
+  padding: 5vh;
+}
+.middle-dash-cont {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
+  width: 53vw;
+}
+.wrap-cards {
+  display: flex;
+  flex-wrap: wrap;
 }
 /* dashboard Overall stats */
-.overall-progress-cont,
 .personal-cont,
 .group-cont {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   flex-direction: column;
 }
 .progress-bars {
   width: 50vw;
-  border: 1px black solid;
+  border: 1px #d2d2d2 solid;
   padding: 2vh;
   border-radius: 10px;
 }
-.progress-bar {
-  background-color: #8a58fe !important;
-}
 /* dashboard Card */
+.card-body {
+  width: 24.5vw !important;
+  height: 30vh !important;
+  flex: 0 0 auto !important;
+}
 .dashboard-card-title {
   color: black;
 }
@@ -452,27 +462,125 @@ button:hover .button-text {
   justify-content: end;
   padding: 2vh;
 }
-.slide-close-btn {
-  width: 4vw;
-  background-color: #8a58fe !important;
-}
 .btn-class {
   background-color: #8a58fe !important;
 }
 .offcanvas-title {
   font-size: 4vh !important;
 }
+.add-event-card {
+  background-color: #e9ecef !important;
+  opacity: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.08);
+  &:hover {
+    background-image: linear-gradient(to right, #8c52ff, #5ce1e6);
+    opacity: 50%;
+  }
+}
 
-/* Modal Buttons */
+/* proflie */
+.pic-div {
+  height: 8vh;
+  width: 8vh;
+  justify-content: center;
+  border-radius: 999px;
+  overflow: clip;
+  position: absolute;
+  left: 1vw;
+  top: 14vh;
+}
+.pic-div-inside {
+  height: 15vh;
+  width: 15vh;
+  justify-content: center;
+  border-radius: 999px;
+  overflow: clip;
+}
+
+/* Modal */
 
 .modal-btns {
   background-color: transparent !important;
   border: none;
   padding: 1rem;
   font-size: 1.5rem;
+  position: absolute;
 }
 
-.modal-btns-cont {
-  display: flex;
+.modal-btn-cont {
   justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.mini-btn-cont {
+  width: fit-content;
+  border-left: 1.5px solid #dee2e6 !important;
+  border-top: 1.5px solid #dee2e6 !important;
+}
+
+.modal-tool-tips {
+  border-right: 1.5px solid #dee2e6 !important;
+}
+
+.see-more {
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.5vh;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 50%;
+  }
+}
+
+.modal-img {
+  width: 100%;
+}
+
+.modal-forms {
+  position: absolute;
+  top: 6vh;
+  left: -4.5vw;
+}
+
+.hide {
+  display: none;
+}
+
+.tiny-form {
+  background-color: #dee2e6;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-bottom: 2vh;
+  padding-top: 1px;
+  border-radius: 1vh;
+}
+
+.center-tiny-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+}
+
+.tiny-form-btns {
+  border: 1px solid #7f7f7f;
+  background-color: transparent;
+  border-radius: 1vh;
+  color: #7f7f7f;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #7f7f7f;
+    color: #dee2e6;
+  }
+}
+
+.modal-header .btn-close {
+  position: absolute;
+  right: 2vw;
+  top: 2vh;
 }
