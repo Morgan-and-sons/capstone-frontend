@@ -10,8 +10,6 @@ import SignIn from "./pages/SignIn"
 import Dashboard from "./pages/Dashboard"
 import New from "./pages/New"
 import Edit from "./pages/Edit"
-import AddEventParticipant from "./pages/AddEventParticipant"
-import UpdateEventGroupTotal from "./pages/UpdateEventGroupTotal"
 import { Route, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
