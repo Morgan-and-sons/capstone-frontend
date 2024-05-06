@@ -584,3 +584,47 @@ button:hover .button-text {
   right: 2vw;
   top: 2vh;
 }
+
+/* New and Edit */
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+.new-edit-button {
+  border-radius: 0.375rem;
+  padding: 10px 20px;
+  background-color: #8a58fe;
+  color: white;
+  width: 10vw;
+  margin: 1rem;
+}
+
+.new-form {
+  margin-top: 4rem;
+  height: 80%;
+  width: 80%;
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+.page-body {
+  background-color: rgb(255, 255, 255);
+  height: 93vh;
+  display: flex;
+  justify-content: center;
+}
+
+.title-header {
+  text-align: center;
+  margin-bottom: 3vh;
+  font-size: 5vh;
+  font-weight: 600;
+  letter-spacing: 5px;
+}

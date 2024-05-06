@@ -36,8 +36,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
           <h3 className="title-header center-content">Update Event</h3>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <Label for="title">Event Title</Label>
+              <FormGroup floating>
                 <input
                   style={{ width: "30vw" }}
                   id="title"
@@ -47,14 +46,14 @@ const Update = ({ updateEvent, currentUser, event }) => {
                   className="form-control"
                   {...register("title", { required: true })}
                 />
+                <Label for="title">Event Title</Label>
                 {errors.title && (
                   <span className="form-validations">Title is required</span>
                 )}
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <Label for="body">Event Description</Label>
+              <FormGroup floating>
                 <input
                   style={{ width: "30vw" }}
                   id="body"
@@ -64,6 +63,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
                   className="form-control"
                   {...register("body", { required: true })}
                 />
+                <Label for="body">Event Description</Label>
                 {errors.body && (
                   <span className="form-validations">
                     Description is required
@@ -74,8 +74,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <Label for="eventphoto">Event Photo URL</Label>
+              <FormGroup floating>
                 <input
                   style={{ width: "30vw" }}
                   id="eventphoto"
@@ -85,6 +84,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
                   className="form-control"
                   {...register("eventphoto", { required: true })}
                 />
+                <Label for="eventphoto">Event Photo URL</Label>
                 {errors.eventphoto && (
                   <span className="form-validations">
                     Event Photo URL is required
@@ -93,8 +93,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <Label for="eventamount">Event Amount</Label>
+              <FormGroup floating>
                 <input
                   style={{ width: "30vw" }}
                   id="eventamount"
@@ -105,6 +104,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
                   className="form-control"
                   {...register("eventamount", { required: true })}
                 />
+                <Label for="eventamount">Event Amount</Label>
                 {errors.eventamount && (
                   <span className="form-validations">
                     Event Amount is required
@@ -115,8 +115,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <Label for="grouptotal">Group Total</Label>
+              <FormGroup floating>
                 <input
                   style={{ width: "30vw" }}
                   id="grouptotal"
@@ -127,6 +126,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
                   className="form-control"
                   {...register("grouptotal", { required: true })}
                 />
+                <Label for="grouptotal">Group Total</Label>
                 {errors.grouptotal && (
                   <span className="form-validations">
                     Group Total is required
@@ -135,8 +135,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <Label for="location">Location</Label>
+              <FormGroup floating>
                 <input
                   style={{ width: "30vw" }}
                   id="location"
@@ -146,6 +145,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
                   className="form-control"
                   {...register("location", { required: true })}
                 />
+                <Label for="location">Location</Label>
                 {errors.location && (
                   <span className="form-validations">Location is required</span>
                 )}
@@ -154,8 +154,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <Label for="creator">Event Creator</Label>
+              <FormGroup floating>
                 <input
                   style={{ width: "30vw" }}
                   id="creator"
@@ -167,6 +166,7 @@ const Update = ({ updateEvent, currentUser, event }) => {
                   readOnly
                   {...register("creator", { required: true })}
                 />
+                <Label for="creator">Event Creator</Label>
                 {errors.creator && (
                   <span className="form-validations">Creator is required</span>
                 )}
