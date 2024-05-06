@@ -187,7 +187,10 @@ const Dashboard = ({
       <div className="main-dash-cont">
         <div className="middle-dash-cont">
           <div style={{ textAlign: "center" }}>
-            <h1 className="mb-5">{`${currentUser.firstname}'s Dashboard`}</h1>
+            <h1
+              className="mb-5"
+              style={{ fontFamily: "Shrikhand, serif" }}
+            >{`${currentUser.firstname}'s Dashboard`}</h1>
           </div>
           <div
             className="d-flex mb-3"
@@ -230,7 +233,7 @@ const Dashboard = ({
             <div className="d-flex gap-3 wrap-cards mb-3">
               {eventsWithColor &&
                 isItMine(eventsWithColor).map((event) => (
-                  <Card key={event.id} body className="card-body">
+                  <Card key={event.id} body className="dash-card-body">
                     <CardTitle
                       style={{
                         fontSize: "3vh",
@@ -281,7 +284,7 @@ const Dashboard = ({
               <Link to="/new" style={{ textDecoration: "none" }}>
                 <Card
                   body
-                  className="card-body add-event-card d-flex"
+                  className="dash-card-body add-event-card d-flex"
                   style={{ justifyContent: "center", alignItems: "center" }}
                   onMouseEnter={() => setNewHovered(true)}
                   onMouseLeave={() => setNewHovered(false)}
@@ -306,7 +309,7 @@ const Dashboard = ({
             <div className="d-flex gap-3 wrap-cards">
               {eventsWithColor &&
                 wasIInvited(eventsWithColor).map((event) => (
-                  <Card key={event.id} body className="card-body">
+                  <Card key={event.id} body className="dash-card-body">
                     <CardTitle
                       style={{
                         fontSize: "3vh",
