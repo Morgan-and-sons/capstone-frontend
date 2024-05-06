@@ -22,8 +22,7 @@ const New = ({ createEvent, currentUser }) => {
           <h3 className="title-header center-content">Create a New Event</h3>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <Label for="title">Event Title</Label>
+              <FormGroup floating>
                 <input
                   style={{
                     width: "30vw",
@@ -35,14 +34,14 @@ const New = ({ createEvent, currentUser }) => {
                   className="form-control"
                   {...register("title", { required: true })}
                 />
+                <Label for="title">Event Title</Label>
                 {errors.title && (
                   <span className="form-validations">Title is required</span>
                 )}
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <Label for="body">Event Description</Label>
+              <FormGroup floating>
                 <input
                   style={{
                     width: "30vw",
@@ -54,6 +53,7 @@ const New = ({ createEvent, currentUser }) => {
                   className="form-control"
                   {...register("body", { required: true })}
                 />
+                <Label for="body">Event Description</Label>
                 {errors.body && (
                   <span className="form-validations">
                     Description is required
@@ -64,8 +64,7 @@ const New = ({ createEvent, currentUser }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <Label for="eventphoto">Event Photo URL</Label>
+              <FormGroup floating>
                 <input
                   style={{
                     width: "30vw",
@@ -77,6 +76,7 @@ const New = ({ createEvent, currentUser }) => {
                   className="form-control"
                   {...register("eventphoto", { required: true })}
                 />
+                <Label for="eventphoto">Event Photo URL</Label>
                 {errors.eventphoto && (
                   <span className="form-validations">
                     Event Photo URL is required
@@ -85,8 +85,7 @@ const New = ({ createEvent, currentUser }) => {
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <Label for="eventamount">Event Amount</Label>
+              <FormGroup floating>
                 <input
                   style={{
                     width: "30vw",
@@ -99,6 +98,7 @@ const New = ({ createEvent, currentUser }) => {
                   className="form-control"
                   {...register("eventamount", { required: true })}
                 />
+                <Label for="eventamount">Event Amount</Label>
                 {errors.eventamount && (
                   <span className="form-validations">
                     Event Amount is required
@@ -109,8 +109,7 @@ const New = ({ createEvent, currentUser }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <Label for="grouptotal">Group Total</Label>
+              <FormGroup floating>
                 <input
                   style={{
                     width: "30vw",
@@ -121,10 +120,11 @@ const New = ({ createEvent, currentUser }) => {
                   type="number"
                   min="0"
                   className="form-control"
-                  value="0" // Set initial value to 0
-                  readOnly // Make the field read-only so users cannot edit it
+                  value="0"
+                  readOnly
                   {...register("grouptotal", { required: true })}
                 />
+                <Label for="grouptotal">Group Total</Label>
                 {errors.grouptotal && (
                   <span className="form-validations">
                     Group Total is required
@@ -133,8 +133,7 @@ const New = ({ createEvent, currentUser }) => {
               </FormGroup>
             </Col>
             <Col md={6}>
-              <FormGroup>
-                <Label for="location">Location</Label>
+              <FormGroup floating>
                 <input
                   style={{
                     width: "30vw",
@@ -146,6 +145,7 @@ const New = ({ createEvent, currentUser }) => {
                   className="form-control"
                   {...register("location", { required: true })}
                 />
+                <Label for="location">Location</Label>
                 {errors.location && (
                   <span className="form-validations">Location is required</span>
                 )}
@@ -154,8 +154,7 @@ const New = ({ createEvent, currentUser }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <FormGroup>
-                <Label for="creator">Event Creator</Label>
+              <FormGroup floating>
                 <input
                   style={{
                     width: "30vw",
@@ -169,6 +168,7 @@ const New = ({ createEvent, currentUser }) => {
                   readOnly
                   {...register("creator", { required: true })}
                 />
+                <Label for="creator">Event Creator</Label>
                 {errors.creator && (
                   <span className="form-validations">Creator is required</span>
                 )}
