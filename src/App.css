@@ -78,12 +78,114 @@
 
 /* Home */
 
-.card-title {
-  font-size: 4.5rem;
-  font-weight: 700;
+.back-to-top:hover {
+  transform: scale(
+    1.1
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition: transform 0.3s ease;
 }
 
-.card-text {
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #000000;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #000000;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+
+.app-name {
+  font-size: 6rem;
+  font-weight: 700;
+  font-family: "Shrikhand", serif;
+  font-style: normal;
+  text-shadow: 2px 10px 2px #000000;
+  letter-spacing: 0.2rem;
+  color: #ffffff !important;
+}
+
+.app-moto {
   font-size: 1.5rem;
   color: #ffffff !important;
 }
@@ -108,35 +210,107 @@
 
 .how-to-cont {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 105vh;
+  background-color: #f5f5f5;
+}
+
+.how-to-title {
+  margin-top: 2rem;
+  padding: 2rem;
+  font-size: 5rem;
+  font-weight: lighter;
+  text-align: center;
+}
+
+.how-to-steps {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 86vh;
-  background-color: #f5f5f5;
 }
 
 .home1 {
   display: flex;
   align-items: center;
-  width: 50vh;
-  height: 50vh;
-  background-color: #f5f5f5;
+  width: 60vh;
+  height: 60vh;
+  overflow: hidden;
   border-radius: 50%;
 }
 
 .features-cont {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150vh;
+}
+
+.features-title {
+  font-size: 2rem;
+  color: #cba86b;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+.features-cards {
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 86vh;
-  background-color: #ffffff;
+}
+
+.features-card {
+  width: 45rem;
+  height: 45rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.features-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .FAQ-cont {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  height: 50vh;
+  height: 90vh;
   background-image: linear-gradient(to right, #8c52ff, #5ce1e6);
+}
+
+.steps-text {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.steps-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* Carausel */
+
+.carousel-cont {
+  background: whitesmoke;
+}
+
+.carousel-text {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff !important;
+  margin-bottom: 2rem;
+  text-shadow: #000000;
 }
 
 /* sign in */

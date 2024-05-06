@@ -207,7 +207,7 @@ const App = () => {
 
   return (
     <>
-      <Header currentUser={currentUser} signOut={signOut} />
+      <Header id="top" currentUser={currentUser} signOut={signOut} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp signUp={signUp} />} />

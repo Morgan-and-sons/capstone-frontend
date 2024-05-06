@@ -33,9 +33,9 @@ const Header = ({ signOut, currentUser }) => {
             )}
           </div>
           <div className="nav-links">
-            <NavLink to="/FAQ" className="nav-link nav-links">
+            <a href="/#faq" className="nav-link nav-links">
               FAQ
-            </NavLink>
+            </a>
           </div>
           <div className="nav-links">
             {!currentUser && (
