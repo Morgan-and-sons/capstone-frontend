@@ -52,15 +52,14 @@ test("renders Home component", () => {
   expect(featuresHeading).toBeInTheDocument()
 
   const feature1 = screen.getByText(
-    /Set a goal and start saving with friends and family. Finally save for what you always plan to do! Plan a trip, buy a gift, or save up for a rainy day./i
+    /Set a goal and start saving with friends and family\. Finally actually do the things you always talk about doing with friends and family! Plan a trip, buy a gift, or save up for a rainy day\./i
   )
   expect(feature1).toBeInTheDocument()
 
   const feature2 = screen.getByText(
-    /Planned Events are a great way to build better bonds with friends and Family. Bank Buddy makes it easy to save for events and enjoy the time spent with loved ones./i
+    /Planned Events are a great way to build better bonds with friends and Family\. Bank Buddy makes it easy to save for events and enjoy the time spent with loved ones\./i
   )
   expect(feature2).toBeInTheDocument()
-
   const faqHeading = screen.getByRole("heading", {
     name: /Frequently Asked Questions/i,
   })
