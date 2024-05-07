@@ -35,7 +35,7 @@ const Dashboard = ({
   const getPermittedEvents = async () => {
     try {
       const getResponse = await fetch(
-        `http://localhost:3000/event_participants/${currentUser.id}`,
+        `https://capstone-backend-pcts.onrender.com/event_participants/${currentUser.id}`,
         {
           method: "GET",
           headers: {

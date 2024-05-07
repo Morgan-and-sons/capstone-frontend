@@ -30,7 +30,7 @@ const App = () => {
 
   const signUp = async (newUser) => {
     try {
-      const signUpResponse = await fetch("http://localhost:3000/signup", {
+      const signUpResponse = await fetch("https://capstone-backend-pcts.onrender.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const App = () => {
 
   const signIn = async (user) => {
     try {
-      const signInResponse = await fetch("http://localhost:3000/login", {
+      const signInResponse = await fetch("https://capstone-backend-pcts.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const App = () => {
 
   const signOut = async () => {
     try {
-      const signOutResponse = await fetch("http://localhost:3000/logout", {
+      const signOutResponse = await fetch("https://capstone-backend-pcts.onrender.com/logout", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const App = () => {
 
   const getEvents = async () => {
     try {
-      const getResponse = await fetch("http://localhost:3000/events")
+      const getResponse = await fetch("https://capstone-backend-pcts.onrender.com/events")
       if (!getResponse.ok) {
         throw new Error("Error on the get request for events")
       }
@@ -112,7 +112,7 @@ const App = () => {
 
   const createEvent = async (event) => {
     try {
-      const createResponse = await fetch("http://localhost:3000/events", {
+      const createResponse = await fetch("https://capstone-backend-pcts.onrender.com/events", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +132,7 @@ const App = () => {
 
   const updateEvent = async (id, editEvent) => {
     try {
-      const patchResponse = await fetch(`http://localhost:3000/events/${id}`, {
+      const patchResponse = await fetch(`https://capstone-backend-pcts.onrender.com/events/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -151,7 +151,7 @@ const App = () => {
 
   const deleteEvent = async (id) => {
     try {
-      const deleteResponse = await fetch(`http://localhost:3000/events/${id}`, {
+      const deleteResponse = await fetch(`https://capstone-backend-pcts.onrender.com/events/${id}`, {
         method: "DELETE",
       })
       if (!deleteResponse.ok) {
@@ -165,7 +165,7 @@ const App = () => {
   const createEventParticipant = async (event) => {
     try {
       const createResponse = await fetch(
-        "http://localhost:3000/event_participants",
+        "https://capstone-backend-pcts.onrender.com/event_participants",
         {
           method: "POST",
           headers: {
@@ -187,7 +187,7 @@ const App = () => {
   const getEventParticipants = async () => {
     try {
       const getResponse = await fetch(
-        "http://localhost:3000/event_participants"
+        "https://capstone-backend-pcts.onrender.com/event_participants"
       )
       if (!getResponse.ok) {
         throw new Error("Error on the get request for events")
